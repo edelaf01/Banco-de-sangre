@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="unileon.es.inso2_aderlass_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <non-jta-data-source>jdbc/p1</non-jta-data-source>
+    <class>unileon.es.inso2.aderlass.Stockglobulos</class>
+    <class>unileon.es.inso2.aderlass.User</class>
+    <class>unileon.es.inso2.aderlass.Pedidos</class>
+    <class>unileon.es.inso2.aderlass.Stocksangre</class>
+    <class>unileon.es.inso2.aderlass.Stockplaquetas</class>
+    <class>unileon.es.inso2.aderlass.Donantevalidar</class>
+    <class>pojo.Stockglobulos</class>
+    <class>pojo.User</class>
+    <class>pojo.Stockplaquetas</class>
+    <class>pojo.Stocksangre</class>
+    <class>pojo.Pedidos</class>
+    <class>pojo.Donantevalidar</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/aderlass?useTimeZone=true&amp;serverTimezone=UTC&amp;autoReconnect=true&amp;useSSL=false"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="toor"/>
+    </properties>
+  </persistence-unit>
+</persistence>
