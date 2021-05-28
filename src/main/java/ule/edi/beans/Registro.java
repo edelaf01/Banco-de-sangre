@@ -53,7 +53,8 @@ public class Registro implements Serializable {
 
 	//validate login
 	public String validateUsernamePassword() {
-		boolean valid = LoginDAO.validate(user, pwd,type);
+            LoginDAO ldao=new LoginDAO();
+		boolean valid = ldao.validate(user, pwd,type);
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", user);

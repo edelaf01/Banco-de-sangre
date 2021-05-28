@@ -41,17 +41,14 @@ Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory name="MySessionFactory">
-    <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aderlass</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aderlass?useSSL=false</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">toor</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <mapping resource="ule/edi/model/Pedidos.hbm.xml"/>
-    <mapping resource="ule/edi/model/Stockplaquetas.hbm.xml"/>
-    <mapping resource="ule/edi/model/Stockglobulos.hbm.xml"/>
-    <mapping resource="ule/edi/model/Stocksangre.hbm.xml"/>
-    <mapping resource="ule/edi/model/Donantevalidar.hbm.xml"/>
+    <property name="hibernate.current_session_context_class">thread</property>
+
     <mapping resource="ule/edi/model/User.hbm.xml"/>
-    <mapping resource="../java/ule/edi/model/user.hbm.xml"/>
+    
   </session-factory>
 </hibernate-configuration>
