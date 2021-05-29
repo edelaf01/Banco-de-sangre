@@ -95,6 +95,8 @@ public class Login implements Serializable {
         String metodo = "login";
         boolean valid = ldao.validate(user, pwd, type, metodo);
         if (valid) {
+            //ultimo login
+            
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user);
             type2 = type;

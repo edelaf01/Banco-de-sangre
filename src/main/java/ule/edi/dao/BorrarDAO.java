@@ -36,8 +36,8 @@ public class BorrarDAO {
         // con = DataConnect.getConnection();
         Transaction transaction = null;
         try {
-           // session = HibernateUtil.getSessionFactory().openSession();
-             session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session = HibernateUtil.getSessionFactory().openSession();
+           //  session = HibernateUtil.getSessionFactory().getCurrentSession();
             String hql = "delete from User where username=:uname";
             Query query = session.createQuery(hql);
             transaction = session.beginTransaction();
