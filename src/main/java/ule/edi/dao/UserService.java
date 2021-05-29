@@ -16,6 +16,6 @@ import ule.edi.model.User;
 public interface UserService {
  
     public void addPerson(User p);
-    public List<User> listPersons();
+    
      
 }

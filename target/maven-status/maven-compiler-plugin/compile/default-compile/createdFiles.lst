@@ -1,0 +1,16 @@
+ule\edi\dao\LoginDAO.class
+ule\edi\dao\CampoDAO.class
+ule\edi\dao\UserServiceImpl.class
+ule\edi\filter\AuthorizationFilter.class
+ule\edi\model\Donantevalidar.class
+ule\edi\dao\HibernateUtil.class
+ule\edi\model\User.class
+ule\edi\dao\RegistroDAO.class
+ule\edi\util\DataConnect.class
+ule\edi\util\SessionUtils.class
+ule\edi\dao\RegistroImpl.class
+ule\edi\dao\UserService.class
+ule\edi\dao\BorrarDAO.class
+ule\edi\dao\CampoImpl.class
+ule\edi\beans\Campo.class
+ule\edi\beans\Login.class

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29-may-2021 1:18:14 by Hibernate Tools 4.3.1 -->
+<!-- Generated 29-may-2021 21:13:02 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="ule.edi.model.User" table="user" catalog="aderlass" optimistic-lock="version">
+    <class name="ule.edi.model.User" table="user" catalog="aderlass">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="identity"></generator>
         </id>
         <property name="username" type="string">
             <column name="username" length="16" not-null="true" unique="true" />

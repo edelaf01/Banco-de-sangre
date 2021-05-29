@@ -33,9 +33,5 @@ public class UserServiceImpl  implements UserService{
         this.personDAO.addUser(p);
     }
  
-    @Override
-    @Transactional
-    public List<User> listPersons() {
-        return this.personDAO.listPersons();
-    }
+  
 }

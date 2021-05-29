@@ -58,9 +58,6 @@ public class RegistroImpl implements RegistroDAO {
         }
     }
 
-    @Override
-    public List<User> listPersons() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
 }

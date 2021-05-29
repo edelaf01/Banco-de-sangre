@@ -1,15 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-	<title>Campo</title>
-</h:head>
-<h:body>
-	<h:form>
-		<p>Welcome #{login.user}</p>
-		<h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
-	</h:form>
-</h:body>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Formulario</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p>Welcome #{login.user}</p>
+            <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
+            <p>Seleccione tipo de sangre a insertar</p>
+            <h:selectOneMenu value="#{campoNombre.tipoSangre}"  >
+                <f:selectItem itemValue = "A+" itemLabel = "A+" /> 
+                <f:selectItem itemValue = "B+" itemLabel = "B+" /> 
+                <f:selectItem itemValue = "O+" itemLabel = "O+" /> 
+                <f:selectItem itemValue = "AB+" itemLabel = "AB+" /> 
+                <f:selectItem itemValue = "A-" itemLabel = "A-" /> 
+                <f:selectItem itemValue = "B-" itemLabel = "B-" /> 
+                <f:selectItem itemValue = "O-" itemLabel = "O-" /> 
+                <f:selectItem itemValue = "AB-" itemLabel = "AB-" /> 
+            </h:selectOneMenu>
+            <p>Es valido?</p>
+            <h:selectOneMenu value="#{campoNombre.valido}"  >
+                <f:selectItem itemValue = "si" itemLabel = "Si" /> 
+                <f:selectItem itemValue = "no" itemLabel = "No" /> 
+
+            </h:selectOneMenu>
+
+            <h:commandButton action="#{campoNombre.anyadirSangre}"
+                             ></h:commandButton>
+        </h:form>
+    </h:body>
 </html>

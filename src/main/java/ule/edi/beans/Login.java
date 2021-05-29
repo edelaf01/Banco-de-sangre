@@ -17,7 +17,7 @@ import ule.edi.dao.RegistroImpl;
 import ule.edi.model.User;
 import ule.edi.util.SessionUtils;
 
-@ManagedBean
+@ManagedBean(name="login")
 @SessionScoped
 public class Login implements Serializable {
 
