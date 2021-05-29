@@ -9,44 +9,58 @@ package ule.edi.dao;
  *
  * @author kkkk
  */
+import java.sql.Connection;
 import java.util.List;
+import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import ule.edi.model.User;
+import ule.edi.util.DataConnect;
 
 @Repository
 public class RegistroImpl implements RegistroDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(RegistroImpl.class);
-
-    private SessionFactory sessionFactory;
-
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
-    }
+    private Session session;
 
     @Override
+    @Transactional
     public void addUser(User p) {
-        Session session;
-        session = this.sessionFactory.getCurrentSession();
-        session.persist(p);
-        logger.info("Person saved successfully, Person Details=" + p);
+        // Connection con = null;
+        // con = DataConnect.getConnection();
+        Transaction transaction = null;
+        try {
+
+            session = HibernateUtil.getSessionFactory().openSession();
+            // session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+            transaction = session.beginTransaction();
+
+            session.save(p);
+
+            transaction.commit();
+            session.flush();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+
+            //DataConnect.close(con);
+            session.close();
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public List<User> listPersons() {
-        Session session = this.sessionFactory.getCurrentSession();
-        List<User> personsList = session.createQuery("from Person").list();
-        for (User p : personsList) {
-            logger.info("Person List::" + p);
-        }
-        return personsList;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -25,7 +25,7 @@ public class Registro implements Serializable {
 		return pwd;
 	}
 
-	public void setPwd(String pwd) {
+	public void setPwdwewew(String pwd) {
 		this.pwd = pwd;
 	}
 
@@ -54,7 +54,8 @@ public class Registro implements Serializable {
 	//validate login
 	public String validateUsernamePassword() {
             LoginDAO ldao=new LoginDAO();
-		boolean valid = ldao.validate(user, pwd,type);
+            String metodo="login";
+		boolean valid = ldao.validate(user, pwd,type,metodo);
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", user);

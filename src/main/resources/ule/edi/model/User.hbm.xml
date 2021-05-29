@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 28-may-2021 1:35:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 29-may-2021 1:18:14 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="ule.edi.model.User" table="user" catalog="aderlass" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -13,9 +13,15 @@
         </property>
         <property name="password" type="binary">
             <column name="password" not-null="true" />
-        </property> 
+        </property>
         <property name="type" type="string">
             <column name="type" length="40" not-null="true" />
+        </property>
+        <property name="nomapel" type="string">
+            <column name="nomapel" length="40" not-null="true" />
+        </property>
+        <property name="ulticonfec" type="timestamp">
+            <column name="ulticonfec" length="19" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

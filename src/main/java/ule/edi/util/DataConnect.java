@@ -7,9 +7,9 @@ public class DataConnect {
 
 	public static Connection getConnection() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/aderlass?useTimeZone=true&serverTimezone=UTC&autoReconnect=true&useSSL=false", "root", "toor");
+					"jdbc:mysql://localhost:3306/aderlass?useTimeZone=true&serverTimezone=UTC&useSSL=false", "root", "toor");
 			return con;
 		} catch (Exception ex) {
 			System.out.println("Database.getConnection() Error -->"

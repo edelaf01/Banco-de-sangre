@@ -42,13 +42,10 @@ Contributor(s):
 <hibernate-configuration>
   <session-factory name="MySessionFactory">
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aderlass?useSSL=false</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aderlass?useSSL=false&amp;zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">toor</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.current_session_context_class">thread</property>
-
     <mapping resource="ule/edi/model/User.hbm.xml"/>
-    
   </session-factory>
 </hibernate-configuration>

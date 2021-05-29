@@ -13,50 +13,64 @@ public class LoginDAO {
 
     private Session session;
 
-    public boolean validate(String user, String password, String type) {
-        /*Connection con = null;
-		PreparedStatement ps = null;
+    public boolean validate(String user, String password, String type, String metodo) {
+        if ("login".equals(metodo)) {
+            Connection con = null;
+            con = DataConnect.getConnection();
 
-		try {
-			con = DataConnect.getConnection();
-              
-			ps = con.prepareStatement("Select username, password from user where username = ? and password = ? and type= ?");
-			ps.setString(1, user);
-			ps.setString(2, password);
-                        ps.setString(3, type);
+            try {
+                System.out.println("AVER");
+                session = HibernateUtil.getSessionFactory().openSession();
 
-			ResultSet rs = ps.executeQuery();
+                String hql = "FROM User WHERE username='" + user + "' and password='" + password + "'and type='" + type + "'";
+                   System.out.println("AVER");
+                session.beginTransaction();
+                   System.out.println("AVER");
+                Query query = session.createQuery(hql);
+   System.out.println("AVER");
+                if (!query.list().isEmpty()) {
+                    return true;
+                }
+                   System.out.println("AVER");
+                session.flush();
 
-			if (rs.next()) {
-				return true;
-			}
-		} catch (SQLException ex) {
-			System.out.println("Login error -->" + ex.getMessage());
-			return false;
-		} finally {
-			DataConnect.close(con);
-		}
-		return false;*/
-        Connection con = null;
-        con = DataConnect.getConnection();
-        System.out.println("Lol1");
-        try {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
-            System.out.println("Lol1");
-            String hql = "FROM User WHERE username='" + user + "' and password='" + password + "' and type='" + type + "'";
-            System.out.println("Lol1");
-            session.beginTransaction();
-            Query query = session.createQuery(hql);
-            System.out.println("Lol1");
-            if (!query.list().isEmpty()) {
-                return true;
+            } catch (Exception e) {
+                session.getTransaction().rollback();
+                e.printStackTrace();
+               
+            } finally {
+                DataConnect.close(con);
+                session.close();
             }
-            System.out.println("Lol" + query.list().toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            DataConnect.close(con);
+            return false;
+        } else {
+           // Connection con = null;
+           // con = DataConnect.getConnection();
+
+            try {
+                session = HibernateUtil.getSessionFactory().openSession();
+
+                String hql = "FROM User WHERE username='" + user + "' and type='" + type + "'";
+                
+                session.beginTransaction();
+                Query query = session.createQuery(hql);
+                session.flush();
+
+                if (!query.list().isEmpty()) {
+                    return true;
+                }
+
+            } catch (Exception e) {
+                session.getTransaction().rollback();
+                e.printStackTrace();
+                return false;
+            } finally {
+              //  DataConnect.close(con);
+                session.close();
+
+            }
+            return false;
         }
-        return false;
+
     }
 }

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
@@ -39,12 +38,13 @@ made subject to such option by the copyright holder.
 
 Contributor(s):
 -->
-<hibernate-reverse-engineering>
-  <schema-selection match-catalog="aderlass"/>
-  <table-filter match-name="pedidos"/>
-  <table-filter match-name="stocksangre"/>
-  <table-filter match-name="stockplaquetas"/>
-  <table-filter match-name="donantevalidar"/>
-  <table-filter match-name="user"/>
-  <table-filter match-name="stockglobulos"/>
-</hibernate-reverse-engineering>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+
+
+</hibernate-mapping>

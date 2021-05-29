@@ -1,9 +1,0 @@
-ule\edi\dao\UserServiceImpl.class
-ule\edi\util\DataConnect.class
-ule\edi\util\SessionUtils.class
-ule\edi\filter\AuthorizationFilter.class
-ule\edi\dao\RegistroImpl.class
-ule\edi\dao\HibernateUtil.class
-ule\edi\model\User.class
-ule\edi\dao\UserService.class
-ule\edi\dao\RegistroDAO.class
