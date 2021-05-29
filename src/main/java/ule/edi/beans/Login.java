@@ -32,6 +32,7 @@ public class Login implements Serializable {
     private String type2;
     private String nomapel;
     private String ulticonfec;
+    private List<User> users;
 
     public String getPwd() {
         return pwd;
@@ -39,6 +40,14 @@ public class Login implements Serializable {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public List<User> getUserInfo() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public String getNomapel() {
@@ -144,7 +153,6 @@ public class Login implements Serializable {
 
             rdao.borrarUser(u);
             user = user2;
-            
 
         } else {
             FacesContext.getCurrentInstance().addMessage(
@@ -152,9 +160,23 @@ public class Login implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Error usuario no encontrado",
                             "Introduzca otro usuario"));
-           
         }
         return "borrar";
+    }
+
+    public List<User> listaUsuario() {
+        String metodo = "borrar";
+        boolean valid = ldao.validate(user, pwd, type, metodo);
+
+        BorrarDAO rdao = new BorrarDAO();
+        User u = new User();
+
+        u.setUsername(user);
+
+        setUsers(rdao.generarTabla(user, pwd, type));
+      
+        return users;
+
     }
 
     //logout event, invalidate session

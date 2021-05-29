@@ -36,8 +36,8 @@ public class BorrarDAO {
         // con = DataConnect.getConnection();
         Transaction transaction = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            // session = HibernateUtil.getSessionFactory().getCurrentSession();
+           // session = HibernateUtil.getSessionFactory().openSession();
+             session = HibernateUtil.getSessionFactory().getCurrentSession();
             String hql = "delete from User where username=:uname";
             Query query = session.createQuery(hql);
             transaction = session.beginTransaction();
@@ -51,10 +51,44 @@ public class BorrarDAO {
             }
             e.printStackTrace();
         } finally {
-
             //DataConnect.close(con);
             session.close();
         }
+    }
+
+    public List<User> generarTabla(String user, String password, String type) {
+
+        Connection con = null;
+        con = DataConnect.getConnection();
+        List<User> users = null;
+        try {
+
+            session = HibernateUtil.getSessionFactory().openSession();
+
+            String hql = "FROM User ";
+
+            session.beginTransaction();
+
+            Query query = session.createQuery(hql);
+
+            if (!query.list().isEmpty()) {
+                
+                users=query.list();
+                System.out.println(users.toString());
+                return users;
+            }
+
+            session.flush();
+
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+
+        } finally {
+            DataConnect.close(con);
+            session.close();
+        }
+        return users;
     }
 
 }

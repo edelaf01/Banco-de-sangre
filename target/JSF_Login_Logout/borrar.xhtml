@@ -20,6 +20,22 @@
             <h:commandButton action="#{login.borrar()}"
                              value="Borrar"></h:commandButton>
             <h:commandButton action="admin.xhtml" value="Volver atras" />
+            <h:commandButton action="#{login.listaUsuario()}" value="Actualizar tabla" />
+        </h:form>
+        <h:form prependId="false">
+            <h:dataTable  value="#{login.userInfo}" var="user22">
+                <h:column>
+                    <h:link value="#{user22.username}" outcome="user22">
+                        <f:param name="username" value="#{user22.username}" />
+                    </h:link>
+                    <h:link value="#{user22.ulticonfec}" outcome="user22">
+                        <f:param name="ulticonfec" value="#{user22.ulticonfec}" />
+                    </h:link>
+
+                </h:column>
+
+
+            </h:dataTable>
         </h:form>
     </h:body>
 </html>

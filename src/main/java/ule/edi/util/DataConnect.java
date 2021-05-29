@@ -7,7 +7,7 @@ public class DataConnect {
 
 	public static Connection getConnection() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/aderlass?useTimeZone=true&serverTimezone=UTC&useSSL=false", "root", "toor");
 			return con;
