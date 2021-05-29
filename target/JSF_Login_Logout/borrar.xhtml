@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Borrar</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h3>Borrar un usuario</h3>
+            <br /><br />
+
+            <br /><br />
+            <h:outputText value="Username" />
+            <br /><br />
+            <h:inputText id="username" value="#{login.user}"></h:inputText>
+            <h:message for="username"></h:message>
+            <br /><br />
+            <h:commandButton action="#{login.borrar()}"
+                             value="Borrar"></h:commandButton>
+            <h:commandButton action="admin.xhtml" value="Volver atras" />
+        </h:form>
+    </h:body>
+</html>

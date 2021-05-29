@@ -1,12 +1,15 @@
 package ule.edi.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import ule.edi.dao.BorrarDAO;
 
 import ule.edi.dao.LoginDAO;
 import ule.edi.dao.RegistroDAO;
@@ -116,7 +119,7 @@ public class Login implements Serializable {
             u.setUlticonfec(dt);
             System.out.println("El id es;" + u.getId());
             rdao.addUser(u);
-            user=user2;
+            user = user2;
             return "register";
 
         } else {
@@ -127,6 +130,31 @@ public class Login implements Serializable {
                             "Introduzca otro usuario"));
             return type2;
         }
+    }
+
+    public String borrar() {
+        String metodo = "borrar";
+        boolean valid = ldao.validate(user, pwd, type, metodo);
+        if (valid) {
+
+            BorrarDAO rdao = new BorrarDAO();
+            User u = new User();
+
+            u.setUsername(user);
+
+            rdao.borrarUser(u);
+            user = user2;
+            
+
+        } else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Error usuario no encontrado",
+                            "Introduzca otro usuario"));
+           
+        }
+        return "borrar";
     }
 
     //logout event, invalidate session
