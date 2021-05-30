@@ -1,4 +1,5 @@
 ule\edi\dao\LoginDAO.class
+ule\edi\beans\Laboratorio.class
 ule\edi\dao\CampoDAO.class
 ule\edi\dao\UserServiceImpl.class
 ule\edi\filter\AuthorizationFilter.class
@@ -12,5 +13,7 @@ ule\edi\dao\RegistroImpl.class
 ule\edi\dao\UserService.class
 ule\edi\dao\BorrarDAO.class
 ule\edi\dao\CampoImpl.class
+ule\edi\dao\LaboratorioDAO.class
+ule\edi\dao\LaboratorioImpl.class
 ule\edi\beans\Campo.class
 ule\edi\beans\Login.class

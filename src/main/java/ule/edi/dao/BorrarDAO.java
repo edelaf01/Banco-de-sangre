@@ -56,7 +56,7 @@ public class BorrarDAO {
         }
     }
 
-    public List<User> generarTabla(String user, String password, String type) {
+    public List<User> generarTabla() {
 
         Connection con = null;
         con = DataConnect.getConnection();

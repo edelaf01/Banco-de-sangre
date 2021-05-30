@@ -17,7 +17,7 @@ import ule.edi.dao.RegistroImpl;
 import ule.edi.model.User;
 import ule.edi.util.SessionUtils;
 
-@ManagedBean(name="login")
+@ManagedBean(name = "login")
 @SessionScoped
 public class Login implements Serializable {
 
@@ -96,7 +96,7 @@ public class Login implements Serializable {
         boolean valid = ldao.validate(user, pwd, type, metodo);
         if (valid) {
             //ultimo login
-            
+
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user);
             type2 = type;
@@ -167,16 +167,16 @@ public class Login implements Serializable {
     }
 
     public List<User> listaUsuario() {
-        String metodo = "borrar";
-        boolean valid = ldao.validate(user, pwd, type, metodo);
+        // String metodo = "borrar";
+        //boolean valid = ldao.validate(user, pwd, type, metodo);
 
         BorrarDAO rdao = new BorrarDAO();
         User u = new User();
 
         u.setUsername(user);
 
-        setUsers(rdao.generarTabla(user, pwd, type));
-      
+        setUsers(rdao.generarTabla());
+
         return users;
 
     }
