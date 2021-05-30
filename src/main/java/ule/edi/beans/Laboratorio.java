@@ -15,6 +15,7 @@ import ule.edi.dao.LaboratorioDAO;
 import ule.edi.dao.LaboratorioImpl;
 
 import ule.edi.model.Donantevalidar;
+import ule.edi.model.Stocksangrealmacen;
 import ule.edi.model.User;
 import ule.edi.util.SessionUtils;
 
@@ -86,22 +87,41 @@ public class Laboratorio implements Serializable {
 
     }
 
-    public void anyadirSangre() {
+    public void addSangre() {
+        LaboratorioImpl ldao2 = new LaboratorioImpl();
 
-        CampoImpl campdao = new CampoImpl();
         Donantevalidar u = new Donantevalidar();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
         u.setFecha(date);
-        u.setTipo(tipoSangre);
-
-        campdao.addSangre(u);
-        FacesContext.getCurrentInstance().addMessage(
-                null,
-                new FacesMessage(FacesMessage.SEVERITY_WARN,
-                        "Sangre anyadido correctamente", ""
-                ));
-
+        u.setId(id);
+        Stocksangrealmacen s = new Stocksangrealmacen();
+        s.setFecha(date);
+        String tipoS = "";
+        List<Donantevalidar> lista = ldao2.generarTabla();
+        for (int i = 0; i < lista.size(); i++) {
+            if (id == lista.get(i).getId()) {
+                tipoS = lista.get(i).getTipo();
+                break;
+            }
+        }
+        if (tipoS == "") {
+              FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "No se ha encontrado el id error", ""
+                    ));
+        } else {
+            s.setTipo(tipoS);
+            //Borro el objeto que voy a mover
+            ldao2.borrarSangre(u);
+            ldao2.addSangre(s);
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Sangre anyadido correctamente", ""
+                    ));
+        }
     }
 
     public List<Donantevalidar> listaSangre() {

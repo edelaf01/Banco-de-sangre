@@ -11,12 +11,16 @@
         <h:form>
             <p>Welcome #{login.user}</p>
             <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
-             <br /><br />
-              <h:outputText value="Introduza el id que quiere ser borrado o validado" />
-             <h:inputText id="id" value="#{laboratorio.id}"></h:inputText>
+            <br /><br />
+            <h:outputText value="Introduza el id que quiere ser borrado o validado" />
+            <h:inputText id="id" value="#{laboratorio.id}"></h:inputText>
+            <br /><br />
+            <h:commandButton action="#{laboratorio.addSangre()}"
+                             value="Validar sangre"></h:commandButton>
+            <br /><br />
             <h:commandButton action="#{laboratorio.borrarSangre()}"
                              value="Borrar sangre"></h:commandButton>
-           
+            <br /><br />
             <h:commandButton action="#{laboratorio.listaSangre()}" value="Actualizar tabla" />
         </h:form>
         <h:form prependId="false">

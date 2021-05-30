@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ule.edi.model.Donantevalidar;
+import ule.edi.model.Stocksangrealmacen;
 
 import ule.edi.model.User;
 import ule.edi.util.DataConnect;
@@ -53,9 +54,9 @@ public class LaboratorioImpl {
                 transaction.commit();
             }
 
-           return true;
+            return true;
         } catch (Exception e) {
-           
+
             e.printStackTrace();
             return false;
 
@@ -69,9 +70,8 @@ public class LaboratorioImpl {
 
     }
 
-    /*@Override
     @Transactional
-    public void addSangre(Donantevalidar p) {
+    public void addSangre(Stocksangrealmacen s) {
         // Connection con = null;
         // con = DataConnect.getConnection();
         Transaction transaction = null;
@@ -82,7 +82,7 @@ public class LaboratorioImpl {
 
             transaction = session.beginTransaction();
 
-            session.save(p);
+            session.save(s);
 
             transaction.commit();
             session.flush();
@@ -94,9 +94,12 @@ public class LaboratorioImpl {
         } finally {
 
             //DataConnect.close(con);
+            session.flush();
+            session.clear();
             session.close();
         }
-    }*/
+    }
+
     public List<Donantevalidar> generarTabla() {
         //Devuelve una lista 
         Connection con = null;
@@ -127,6 +130,8 @@ public class LaboratorioImpl {
 
         } finally {
             DataConnect.close(con);
+            session.flush();
+            session.clear();
             session.close();
         }
         return listaSangre;

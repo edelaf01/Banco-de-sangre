@@ -8,5 +8,5 @@ public interface LaboratorioDAO {
     public void addSangre(Donantevalidar u);
     public void borrarSangre(Donantevalidar p);
     public List<Donantevalidar> generarTabla();
-
+ 
 }
