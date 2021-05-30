@@ -1,6 +1,7 @@
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\filter\AuthorizationFilter.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\dao\UserService.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\util\DataConnect.java
+C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\dao\HospitalImpl.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\dao\UserServiceImpl.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\beans\Pedidos.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\dao\LaboratorioDAO.java
@@ -16,9 +17,10 @@ C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\ed
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\model\Donantevalidar.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\dao\HibernateUtil.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\beans\Campo.java
+C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\model\Pedidoshechos.java
+C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\beans\Hospital.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\dao\RegistroImpl.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\dao\LaboratorioImpl.java
-C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\dao\AlmacenDAO.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\model\Inventariohospital.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\model\Stocksangrealmacen.java
 C:\Users\kkkk\Documents\ProyectoInso\Banco-de-sangre-master\src\main\java\ule\edi\model\User.java

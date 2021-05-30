@@ -49,7 +49,8 @@ Contributor(s):
     <mapping resource="ule/edi/model/Pedidos.hbm.xml"/>
     <mapping resource="ule/edi/model/Stocksangrealmacen.hbm.xml"/>
     <mapping resource="ule/edi/model/Donantevalidar.hbm.xml"/>
-    <mapping resource="ule/edi/model/User.hbm.xml"/>
+    <mapping resource="ule/edi/model/Pedidoshechos.hbm.xml"/>
     <mapping resource="ule/edi/model/Inventariohospital.hbm.xml"/>
+    <mapping resource="ule/edi/model/User.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

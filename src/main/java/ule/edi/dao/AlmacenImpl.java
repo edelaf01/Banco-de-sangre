@@ -70,6 +70,43 @@ public class AlmacenImpl {
 
     }
 
+    public String getNombreDestinatario(int id2) {
+        String dev = "";
+        Connection con = null;
+        con = DataConnect.getConnection();
+        List<User> listaSangre = null;
+        try {
+
+            session = HibernateUtil.getSessionFactory().openSession();
+
+            String hql = "FROM User where id=:id ";
+
+            session.beginTransaction();
+
+            Query query = session.createQuery(hql);
+            query.setString("id", "" + id2);
+            if (!query.list().isEmpty()) {
+
+                listaSangre = query.list();
+                dev = listaSangre.get(0).getUsername();
+                return dev;
+            }
+
+            session.flush();
+
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+
+        } finally {
+            DataConnect.close(con);
+            session.flush();
+            session.clear();
+            session.close();
+        }
+        return dev;
+    }
+
     @Transactional
     public void enviarSangre(Inventariohospital s) {
         // Connection con = null;
@@ -209,6 +246,33 @@ public class AlmacenImpl {
             session.close();
         }
         return listaSangre;
+    }
+
+    public void actualizarPedido(ule.edi.model.Pedidos p) {
+        Transaction transaction = null;
+        try {
+
+            session = HibernateUtil.getSessionFactory().openSession();
+            // session = HibernateUtil.getSessionFactory().getCurrentSession();
+            int a = p.getDosis();
+            a = a - 1;
+            p.setDosis(a);
+            transaction = session.beginTransaction();
+
+            session.saveOrUpdate(p);
+
+            transaction.commit();
+            session.flush();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+
+            //DataConnect.close(con);
+            session.close();
+        }
     }
 
 }

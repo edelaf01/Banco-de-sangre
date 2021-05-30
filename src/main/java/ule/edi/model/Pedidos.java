@@ -1,5 +1,5 @@
 package ule.edi.model;
-// Generated 30-may-2021 3:37:07 by Hibernate Tools 4.3.1
+// Generated 30-may-2021 21:09:22 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

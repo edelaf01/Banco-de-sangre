@@ -93,6 +93,7 @@ public class Pedidos implements Serializable {
                                 "Error no hay stock", ""
                         ));
             } else {
+                int tmp=cantidadAenviar;
                 for (int i = 0; i < listaStockActual.size(); i++) {
                     if ((listaStockActual.get(i).getTipo().equals(enviarSangreTipo)) && cantidadAenviar > 0) {
                         cantidadAenviar--;
@@ -101,10 +102,24 @@ public class Pedidos implements Serializable {
                        Inventariohospital recibir = new Inventariohospital();
                        recibir.setTipoSangre(enviaryborrar.getTipo());
                        recibir.setFecha(enviaryborrar.getFecha());
-                       
+                       int id2=lista.get(0).getDestinatarioid();
+                       //OBTENGO EL USERNAME PARA EL ID
+                       String nom=adao.getNombreDestinatario(id2);
+                       recibir.setNombreDuenyo(nom);
+                       //recibir.setNombreDuenyo();
                        adao.enviarSangre(recibir);
                        adao.borrarSangre(enviaryborrar);
+                       //uno menos en el pedido
+                       adao.actualizarPedido(lista.get(0));
+                       //TO-DO MOVER A PEDIDOS COMPLETADOS si llega a 0 pendientes
                     }
+                }
+                if(tmp==cantidadAenviar){
+                     FacesContext.getCurrentInstance().addMessage(
+                        null,
+                        new FacesMessage(FacesMessage.SEVERITY_WARN,
+                                "Error no hay stock para completar el pedido", ""
+                        ));
                 }
             }
         }

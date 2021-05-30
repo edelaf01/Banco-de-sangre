@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-may-2021 21:09:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ule.edi.model.Pedidoshechos" table="pedidoshechos" catalog="aderlass" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" not-null="true" />
+        </property>
+        <property name="tipo" type="int">
+            <column name="tipo" not-null="true" />
+        </property>
+        <property name="dosis" type="int">
+            <column name="dosis" not-null="true" />
+        </property>
+        <property name="destinatarioid" type="int">
+            <column name="destinatarioid" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
