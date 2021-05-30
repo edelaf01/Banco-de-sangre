@@ -1,5 +1,7 @@
 package ule.edi.beans;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -112,7 +114,28 @@ public class Login implements Serializable {
             return "login";
         }
     }
+    public void backup(){
+        try {
+      Process p = Runtime
+            .getRuntime().exec("F:/sql/bin/mysqldump -u root -ptoor aderlass");
+           
 
+      InputStream is = p.getInputStream();
+      FileOutputStream fos = new FileOutputStream("backup_pruebasA.sql");
+      byte[] buffer = new byte[1000];
+
+      int leido = is.read(buffer);
+      while (leido > 0) {
+         fos.write(buffer, 0, leido);
+         leido = is.read(buffer);
+      }
+
+      fos.close();
+
+   } catch (Exception e) {
+      e.printStackTrace();
+   }
+    }
     public String registrar() {
         String metodo = "login";
         boolean valid = ldao.validate(user, pwd, type, metodo);
