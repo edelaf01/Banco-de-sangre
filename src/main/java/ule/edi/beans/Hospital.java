@@ -1,5 +1,6 @@
 package ule.edi.beans;
 
+import ule.edi.model.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,7 +18,6 @@ import ule.edi.model.Inventariohospital;
 import ule.edi.model.User;
 
 import ule.edi.util.SessionUtils;
-
 @ManagedBean(name = "hospital")
 @SessionScoped
 public class Hospital implements Serializable {

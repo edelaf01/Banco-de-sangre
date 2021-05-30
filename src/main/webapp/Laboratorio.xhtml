@@ -23,20 +23,24 @@
             <br /><br />
             <h:commandButton action="#{laboratorio.listaSangre()}" value="Actualizar tabla" />
         </h:form>
+        
         <h:form prependId="false">
             <h:dataTable  value="#{laboratorio.listaValidar}" var="user22" border="2"
                           cellspacing="1" cellpadding="1">
                 <h:column>
+                    <f:facet name = "header">ID</f:facet>   
                     <h:link value="#{user22.id}" outcome="user22">
                         <f:param name="username" value="#{user22.id}" />
                     </h:link>
                 </h:column>
                 <h:column>
+                      <f:facet name = "header">TIPO SANGRE</f:facet>  
                     <h:link value="#{user22.tipo}" outcome="user22">
                         <f:param name="type" value="#{user22.tipo}" />
                     </h:link>
                 </h:column>
                 <h:column>
+                      <f:facet name = "header">FECHA</f:facet>  
                     <h:link value="#{user22.fecha}" outcome="user22">
                         <f:param name="ulticonfec" value="#{user22.fecha}" />
                     </h:link>

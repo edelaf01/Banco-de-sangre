@@ -1,5 +1,5 @@
 package ule.edi.model;
-// Generated 30-may-2021 21:09:22 by Hibernate Tools 4.3.1
+// Generated 30-may-2021 21:47:07 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,19 +12,21 @@ public class Pedidoshechos  implements java.io.Serializable {
 
      private int id;
      private Date fecha;
-     private int tipo;
+     private Date fechacompletarpedido;
      private int dosis;
      private int destinatarioid;
+     private String tipo;
 
     public Pedidoshechos() {
     }
 
-    public Pedidoshechos(int id, Date fecha, int tipo, int dosis, int destinatarioid) {
+    public Pedidoshechos(int id, Date fecha, Date fechacompletarpedido, int dosis, int destinatarioid, String tipo) {
        this.id = id;
        this.fecha = fecha;
-       this.tipo = tipo;
+       this.fechacompletarpedido = fechacompletarpedido;
        this.dosis = dosis;
        this.destinatarioid = destinatarioid;
+       this.tipo = tipo;
     }
    
     public int getId() {
@@ -41,12 +43,12 @@ public class Pedidoshechos  implements java.io.Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    public int getTipo() {
-        return this.tipo;
+    public Date getFechacompletarpedido() {
+        return this.fechacompletarpedido;
     }
     
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
+    public void setFechacompletarpedido(Date fechacompletarpedido) {
+        this.fechacompletarpedido = fechacompletarpedido;
     }
     public int getDosis() {
         return this.dosis;
@@ -61,6 +63,13 @@ public class Pedidoshechos  implements java.io.Serializable {
     
     public void setDestinatarioid(int destinatarioid) {
         this.destinatarioid = destinatarioid;
+    }
+    public String getTipo() {
+        return this.tipo;
+    }
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 

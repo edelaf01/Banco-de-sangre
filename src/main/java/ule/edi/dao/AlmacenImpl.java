@@ -23,6 +23,7 @@ import org.springframework.stereotype.Repository;
 import ule.edi.model.Donantevalidar;
 import ule.edi.model.Inventariohospital;
 import ule.edi.model.Pedidos;
+import ule.edi.model.Pedidoshechos;
 
 import ule.edi.model.Stocksangrealmacen;
 
@@ -272,6 +273,64 @@ public class AlmacenImpl {
 
             //DataConnect.close(con);
             session.close();
+        }
+    }
+
+    public void enviarPedidoCompletado(Pedidoshechos p3) {
+         Transaction transaction = null;
+        try {
+
+            session = HibernateUtil.getSessionFactory().openSession();
+            // session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+            transaction = session.beginTransaction();
+
+            session.save(p3);
+
+            transaction.commit();
+            session.flush();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+
+            //DataConnect.close(con);
+            session.flush();
+            session.clear();
+            session.close();
+        }
+    }
+
+    public void borrarPedidoCompletado(ule.edi.model.Pedidos p2) {
+        Transaction transaction = null;
+        try {
+
+            session = HibernateUtil.getSessionFactory().openSession();
+            //  session = HibernateUtil.getSessionFactory().getCurrentSession();
+            String hql = "delete from Pedidos where id=:id";
+            Query query = session.createQuery(hql);
+
+            transaction = session.beginTransaction();
+
+            query.setString("id", "" + p2.getId());
+
+            query.executeUpdate();
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        } finally {
+            //DataConnect.close(con)
+            session.flush();
+            session.clear();
+            session.close();
+
         }
     }
 

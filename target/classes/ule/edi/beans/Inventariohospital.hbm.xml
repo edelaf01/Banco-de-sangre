@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-may-2021 21:47:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="aderlass" name="ule.edi.model.Inventariohospital" optimistic-lock="version" table="inventariohospital">
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="fecha" type="timestamp">
+      <column length="19" name="fecha"/>
+    </property>
+    <property name="tipoSangre" type="string">
+      <column length="45" name="tipoSangre" not-null="true"/>
+    </property>
+    <property name="nombreDuenyo" type="string">
+      <column length="45" name="nombreDuenyo" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

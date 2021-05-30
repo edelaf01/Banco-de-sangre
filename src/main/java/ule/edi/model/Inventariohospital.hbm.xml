@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 30-may-2021 21:09:22 by Hibernate Tools 4.3.1 -->
+<!-- Generated 30-may-2021 21:47:08 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="ule.edi.model.Inventariohospital" table="inventariohospital" catalog="aderlass" optimistic-lock="version">
+    <class name="ule.edi.beans.Inventariohospital" table="inventariohospital" catalog="aderlass" optimistic-lock="version">
         <id name="id" type="int">
             <column name="id" />
             <generator class="assigned" />

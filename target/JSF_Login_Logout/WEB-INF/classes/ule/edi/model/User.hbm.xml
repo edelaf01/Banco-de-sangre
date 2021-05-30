@@ -1,27 +1,26 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 30-may-2021 21:09:22 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-may-2021 21:47:08 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="ule.edi.model.User" table="user" catalog="aderlass" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
-            <column name="id" />
-            <generator class="identity" />
-        </id>
-        <property name="username" type="string">
-            <column name="username" length="16" not-null="true" unique="true" />
-        </property>
-        <property name="password" type="binary">
-            <column name="password" not-null="true" />
-        </property>
-        <property name="type" type="string">
-            <column name="type" length="40" not-null="true" />
-        </property>
-        <property name="nomapel" type="string">
-            <column name="nomapel" length="40" not-null="true" />
-        </property>
-        <property name="ulticonfec" type="timestamp">
-            <column name="ulticonfec" length="19" not-null="true" />
-        </property>
-    </class>
+  <class catalog="aderlass" name="ule.edi.model.User" optimistic-lock="version" table="user">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="username" type="string">
+      <column length="16" name="username" not-null="true" unique="true"/>
+    </property>
+    <property name="password" type="binary">
+      <column name="password" not-null="true"/>
+    </property>
+    <property name="type" type="string">
+      <column length="40" name="type" not-null="true"/>
+    </property>
+    <property name="nomapel" type="string">
+      <column length="40" name="nomapel" not-null="true"/>
+    </property>
+    <property name="ulticonfec" type="timestamp">
+      <column length="19" name="ulticonfec" not-null="true"/>
+    </property>
+  </class>
 </hibernate-mapping>
