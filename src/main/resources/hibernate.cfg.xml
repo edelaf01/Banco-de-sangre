@@ -48,7 +48,6 @@ Contributor(s):
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <mapping resource="ule/edi/model/User.hbm.xml"/>
     <mapping resource="ule/edi/model/Donantevalidar.hbm.xml"/>
-    
     <mapping resource="ule/edi/model/Stocksangrealmacen.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

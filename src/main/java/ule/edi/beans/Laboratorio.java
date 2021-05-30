@@ -10,13 +10,13 @@ import javax.faces.bean.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import ule.edi.dao.CampoImpl;
+
 import ule.edi.dao.LaboratorioDAO;
 import ule.edi.dao.LaboratorioImpl;
 
 import ule.edi.model.Donantevalidar;
 import ule.edi.model.Stocksangrealmacen;
-import ule.edi.model.User;
+
 import ule.edi.util.SessionUtils;
 
 @ManagedBean(name = "laboratorio")
@@ -106,7 +106,7 @@ public class Laboratorio implements Serializable {
             }
         }
         if (tipoS == "") {
-              FacesContext.getCurrentInstance().addMessage(
+            FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "No se ha encontrado el id error", ""

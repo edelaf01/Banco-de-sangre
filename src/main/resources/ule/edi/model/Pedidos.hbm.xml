@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 28-may-2021 1:35:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 30-may-2021 3:37:07 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="ule.edi.model.Pedidos" table="pedidos" catalog="aderlass" optimistic-lock="version">
-        <id name="id" type="java.lang.Integer">
+        <id name="id" type="int">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="assigned" />
         </id>
-        <property name="fechaPedido" type="timestamp">
-            <column name="fechaPedido" length="19" />
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" />
         </property>
         <property name="tipo" type="string">
-            <column name="tipo" length="45" />
+            <column name="Tipo" length="45" not-null="true" />
         </property>
-        <property name="tipoSangre" type="string">
-            <column name="tipoSangre" length="45" />
+        <property name="dosis" type="int">
+            <column name="dosis" not-null="true" />
         </property>
-        <property name="fechaSangre" type="timestamp">
-            <column name="fechaSangre" length="19" />
+        <property name="destinatarioid" type="int">
+            <column name="destinatarioid" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package ule.edi.model;
-// Generated 30-may-2021 2:29:48 by Hibernate Tools 4.3.1
+// Generated 30-may-2021 3:37:07 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -17,6 +17,10 @@ public class Donantevalidar  implements java.io.Serializable {
     public Donantevalidar() {
     }
 
+	
+    public Donantevalidar(Date fecha) {
+        this.fecha = fecha;
+    }
     public Donantevalidar(String tipo, Date fecha) {
        this.tipo = tipo;
        this.fecha = fecha;
