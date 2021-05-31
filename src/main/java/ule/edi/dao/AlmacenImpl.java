@@ -222,7 +222,7 @@ public class AlmacenImpl {
             session = HibernateUtil.getSessionFactory().openSession();
 
             String hql = "FROM Pedidos where id=:id ";
-
+            System.out.println("Buscando pedido con el id: "+p.getId());
             Query query = session.createQuery(hql);
 
             query.setString("id", "" + p.getId());
@@ -230,13 +230,15 @@ public class AlmacenImpl {
             if (!query.list().isEmpty()) {
 
                 listaSangre = query.list();
-
+                 System.out.println("Buscando pedido con el id: "+p.getId()+" Se ha encontrado resultados para el pedido dirigido al id "+listaSangre.get(0).getDestinatarioid() +
+                         " que pide "+listaSangre.get(0).getDosis()+" dosis de sangre");
                 return listaSangre;
             }
 
             session.flush();
 
         } catch (Exception e) {
+               System.out.println("Excepcion encontrada con el pedido con el id "+p.getId());
             session.getTransaction().rollback();
             e.printStackTrace();
 
@@ -246,6 +248,7 @@ public class AlmacenImpl {
             session.clear();
             session.close();
         }
+          System.out.println("Error no se ha encontrado el pedido con el id:" + p.getId());
         return listaSangre;
     }
 
