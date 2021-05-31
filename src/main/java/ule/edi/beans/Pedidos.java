@@ -145,7 +145,7 @@ public class Pedidos implements Serializable {
                     Pedidoshechos p3 = new Pedidoshechos();
                     p3.setDestinatarioid(p2.getDestinatarioid());
                     p3.setDosis(p2.getDosis());
-                    p3.setFecha(p2.getFecha());
+                     p3.setFecha(p2.getFecha());
                     p3.setTipo(p2.getTipo());
                     Date date = new Date(System.currentTimeMillis());
                     p3.setFechacompletarpedido(date);
