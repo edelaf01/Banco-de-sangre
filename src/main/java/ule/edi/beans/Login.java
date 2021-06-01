@@ -121,7 +121,7 @@ public class Login implements Serializable {
            
 
       InputStream is = p.getInputStream();
-      FileOutputStream fos = new FileOutputStream("backup_pruebasA.sql");
+      FileOutputStream fos = new FileOutputStream("BackupBaseDatosAderlass.sql");
       byte[] buffer = new byte[1000];
 
       int leido = is.read(buffer);
@@ -129,10 +129,19 @@ public class Login implements Serializable {
          fos.write(buffer, 0, leido);
          leido = is.read(buffer);
       }
-
+       FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Backup completado satisfactoriamente en :",
+                            "C:/Users/kkkk/GlassFish_Server/glassfish/domains/domainNOSE/config/BackupBaseDatosAderlass.sql"));
       fos.close();
 
    } catch (Exception e) {
+        FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Error al hacer backup de la base de datos:",
+                            "Mira los logs chato"));
       e.printStackTrace();
    }
     }
@@ -140,7 +149,7 @@ public class Login implements Serializable {
         String metodo = "login";
         boolean valid = ldao.validate(user, pwd, type, metodo);
         if (!valid) {
-
+            
             RegistroImpl rdao = new RegistroImpl();
             User u = new User();
 
@@ -154,6 +163,11 @@ public class Login implements Serializable {
             System.out.println("El id es;" + u.getId());
             rdao.addUser(u);
             user = user2;
+             FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Usuario anyadido satisfactoriamente",
+                            ""));
             return "register";
 
         } else {
@@ -178,12 +192,17 @@ public class Login implements Serializable {
 
             rdao.borrarUser(u);
             user = user2;
+             FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Usuario borrado satisfactoriamente: ",
+                            ""+user));
 
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Error usuario no encontrado",
+                            "Error usuario no encontrado, no se ha borrado ningun usuario",
                             "Introduzca otro usuario"));
         }
         return "borrar";

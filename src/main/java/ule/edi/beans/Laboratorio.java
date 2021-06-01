@@ -109,7 +109,7 @@ public class Laboratorio implements Serializable {
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "No se ha encontrado el id error", ""
+                            "No se ha encontrado el id error ", "No se ha anyadido sangre"
                     ));
         } else {
             s.setTipo(tipoS);
@@ -124,11 +124,9 @@ public class Laboratorio implements Serializable {
         }
     }
 
-    public List<Donantevalidar> listaSangre() {
+    public void listaSangre() {
         LaboratorioImpl ldao2 = new LaboratorioImpl();
         setListaValidar(ldao2.generarTabla());
-
-        return listaValidar;
 
     }
 

@@ -72,7 +72,7 @@ public class Campo implements Serializable {
     }
 
     public void anyadirSangre() {
-        String metodo = "login";
+       
 
         if ("si".equals(valido)) {
 
@@ -94,7 +94,7 @@ public class Campo implements Serializable {
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Sangre no valido",
+                            "Sangre no valida, no se ha anyadido nada",
                             ""));
 
         }

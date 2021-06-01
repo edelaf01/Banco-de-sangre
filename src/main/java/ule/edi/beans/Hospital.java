@@ -132,15 +132,15 @@ public class Hospital implements Serializable {
             }
         }
         System.out.println(nombreUsuario);
-        //TO-DO p.setDestinatarioid();
+        
 
     }
 
-    public List<Inventariohospital> listaStockAlmacen() {
+    public void listaStockAlmacen() {
         HospitalImpl hdao = new HospitalImpl();
         setListaAlmacen(hdao.generarTablaAlmacen(nombreUsuario));
 
-        return listaAlmacen;
+        
 
     }
 
