@@ -145,7 +145,7 @@ public class Pedidos implements Serializable {
                     Pedidoshechos p3 = new Pedidoshechos();
                     p3.setDestinatarioid(p2.getDestinatarioid());
                     p3.setDosis(p2.getDosis());
-                     p3.setFecha(p2.getFecha());
+                    p3.setFecha(p2.getFecha());
                     p3.setTipo(p2.getTipo());
                     Date date = new Date(System.currentTimeMillis());
                     p3.setFechacompletarpedido(date);
@@ -172,19 +172,16 @@ public class Pedidos implements Serializable {
 
     }
 
-    public List<Stocksangrealmacen> listaStockAlmacen() {
+    public void listaStockAlmacen() {
         AlmacenImpl adao = new AlmacenImpl();
         setListaAlmacen(adao.generarTablaAlmacen());
         this.listaPedidosActualizar();
-        return listaAlmacen;
 
     }
 
-    public List<ule.edi.model.Pedidos> listaPedidosActualizar() {
+    public void listaPedidosActualizar() {
         ule.edi.dao.AlmacenImpl adao = new AlmacenImpl();
         setListaPedidos(adao.generarTablaPedidos());
-
-        return listaPedidos;
 
     }
 
