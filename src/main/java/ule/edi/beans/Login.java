@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 import ule.edi.dao.BorrarDAO;
 
 import ule.edi.dao.LoginDAO;
@@ -106,11 +107,13 @@ public class Login implements Serializable {
             return type;
 
         } else {
-            FacesContext.getCurrentInstance().addMessage(
+            RequestContext context = RequestContext.getCurrentInstance();
+            RequestContext.getCurrentInstance();
+           /* FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Incorrect Username and Password",
-                            "Please enter correct username and Password"));
+                            "Please enter correct username and Password"));*/
             return "login";
         }
     }
