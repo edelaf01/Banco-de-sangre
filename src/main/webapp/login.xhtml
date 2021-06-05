@@ -1,33 +1,77 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f = "http://java.sun.com/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui">  
+
+    <script src="https://kit.fontawesome.com/22e24bcbd3.js" crossorigin="anonymous"></script>
     <h:head>
-        <title>login</title>
-    </h:head>
-    <h:body>
-        <h:form>
-            <h3>Banco de sangre login</h3>
-            <h:selectOneMenu value="#{login.type}">
-                <f:selectItem itemValue = "admin" itemLabel = "Admin" /> 
-                <f:selectItem itemValue = "Campo" itemLabel = "Campo" /> 
-                <f:selectItem itemValue = "Laboratorio" itemLabel = "Laboratorio" /> 
-                <f:selectItem itemValue = "Almacen" itemLabel = "Almacen" /> 
-                <f:selectItem itemValue = "Hospital" itemLabel = "Hospital" /> 
-            </h:selectOneMenu>
-            <h:outputText value="Username" />
-            <h:inputText id="username" value="#{login.user}"></h:inputText>
-            <h:message for="username"></h:message>
-            <br /><br />
+        <title>Login</title>
+    </h:head >
+    <div class="container">
 
-            <h:outputText value="Password" />
-            <h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
-            <h:message for="password"></h:message>
-            <br /><br />
+        <div class="screen">
+            <div class="screen__content">
+                <h:body  >
+                    <link rel="stylesheet" type="text/css" href="login.css" media="all" />
+                    <div class="box">
 
-            <h:commandButton action="#{login.validateUsernamePassword}"
-                             value="Login"></h:commandButton>
-        </h:form>
-    </h:body>
+                        <h:form id="frm" class="login">
+                            <div class="login__field2">
+
+                                <h1>Login Banco de sangre</h1>
+                                <br></br>
+                                <p:selectOneMenu value="#{login.type}" styleClass="form-control radius-none" style="width: 200px;" >
+                                    <f:selectItem itemValue = "admin" itemLabel = "Admin" /> 
+                                    <f:selectItem itemValue = "Campo" itemLabel = "Campo" /> 
+                                    <f:selectItem itemValue = "Laboratorio" itemLabel = "Laboratorio" /> 
+                                    <f:selectItem itemValue = "Almacen" itemLabel = "Almacen" /> 
+                                    <f:selectItem itemValue = "Hospital" itemLabel = "Hospital" /> 
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="login__field">
+                                <h:outputText value="Username" class="label"/>
+                                <br></br>
+
+                                <p:inputText  class="login__input" id="username" value="#{login.user}"  >
+                                </p:inputText><i class="login__icon fas fa-user"></i>
+
+                                <p:message for="username"></p:message>
+
+                            </div>
+                            <div class="login__field">
+                                <h:outputText value="Password" class="label"/>
+
+
+                                <h:inputSecret id="password" value="#{login.pwd}" class="login__input"></h:inputSecret>
+                                <i class="login__icon fas fa-lock"></i>
+                                <p:message for="password"></p:message>
+                            </div>
+                            <div>
+
+                                <h:commandLink class="button login__submit" action="#{login.validateUsernamePassword}" value="Login" styleClass="button login__submit">
+
+                                    <i class="button__icon fas fa-chevron-right" ></i>
+
+                                </h:commandLink>
+
+
+                            </div>
+                          
+                            <p>¿Se ha olvidado de su contraseña? </p>
+                            <a href=""  style="color:#f1c40f;" >Contacte con el administrador.
+                                <p>correo@correo.com</p>
+                            </a>
+                        </h:form>
+
+                    </div>
+                </h:body>
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>		</div> </div>
 </html>
