@@ -5,6 +5,15 @@
       xmlns:f = "http://java.sun.com/jsf/core">
     <h:head>
         <title>Borrar</title>
+        <script>
+            function myFunction() {
+                var copyText = document.getElementById("copiar");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999);
+                document.execCommand("copy");
+                alert("Copied the text: " + copyText.value);
+            }
+        </script>
     </h:head>
     <h:body>
         <h:form>
@@ -26,18 +35,21 @@
             <h:dataTable  value="#{login.userInfo}" var="user22" border="2"
                           cellspacing="1" cellpadding="1">
                 <h:column>
-                    <h:link value="#{user22.username}" outcome="user22">
-                        <f:param name="username" value="#{user22.username}" />
+                    <f:facet name = "header">Nombre usuario</f:facet>
+                    <h:link value="#{user22.username}" id="copiar" onclick="myFunction()">
+                        <f:param name="username" value="#{user22.type}" />
                     </h:link>
                 </h:column>
-                 <h:column>
-                     <h:link value="#{user22.type}" outcome="user22">
+                <h:column>
+                    <f:facet name = "header">Tipo usuario</f:facet>
+                    <h:link value="#{user22.type}" >
                         <f:param name="type" value="#{user22.type}" />
                     </h:link>
                 </h:column>
                 <h:column>
-                    <h:link value="#{user22.ulticonfec}" outcome="user22">
-                        <f:param name="ulticonfec" value="#{user22.ulticonfec}" />
+                    <f:facet name = "header">Ultima conexion</f:facet>
+                    <h:link value="#{user22.ulticonfec}"  >
+
                     </h:link>
                 </h:column>
             </h:dataTable>

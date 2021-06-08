@@ -44,7 +44,13 @@ public class Login implements Serializable {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
+ public String getUser2() {
+        return user2;
+    }
 
+    public void setUser2(String pwd) {
+        this.user2 = pwd;
+    }
     public List<User> getUserInfo() {
         return users;
     }
@@ -178,10 +184,10 @@ public class Login implements Serializable {
             User u = new User();
 
             u.setUsername(user);
-
+            
             rdao.borrarUser(u);
             user = user2;
-
+            
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
@@ -192,7 +198,7 @@ public class Login implements Serializable {
         return "borrar";
     }
 
-    public List<User> listaUsuario() {
+    public void listaUsuario() {
         // String metodo = "borrar";
         //boolean valid = ldao.validate(user, pwd, type, metodo);
 
@@ -202,8 +208,6 @@ public class Login implements Serializable {
         u.setUsername(user);
 
         setUsers(rdao.generarTabla());
-
-        return users;
 
     }
 

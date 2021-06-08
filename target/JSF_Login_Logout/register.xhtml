@@ -4,41 +4,61 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f = "http://java.sun.com/jsf/core">
     <h:head>
+        <link rel="stylesheet" href="registrar.css"></link>
+        <script src="https://kit.fontawesome.com/22e24bcbd3.js" crossorigin="anonymous"></script>
         <title>Registro</title>
     </h:head>
-    <h:body>
-        <h:form>
-            <h3>Registrar un nuevo usuario</h3>
-            <br /><br />
-            <h:selectOneMenu value="#{login.type}">
-                <f:selectItem itemValue = "admin" itemLabel = "Admin" /> 
-                <f:selectItem itemValue = "Campo" itemLabel = "Campo" /> 
-                <f:selectItem itemValue = "Laboratorio" itemLabel = "Laboratorio" /> 
-                <f:selectItem itemValue = "Almacen" itemLabel = "Almacen" /> 
-                <f:selectItem itemValue = "Hospital" itemLabel = "Hospital" /> 
-            </h:selectOneMenu>
-            <br /><br />
-            <h:outputText value="Username" />
-            <br /><br />
-            <h:inputText id="username" value="#{login.user}"></h:inputText>
-            <h:message for="username"></h:message>
-            <br /><br />
+    <div class="container">
 
-            <h:outputText value="Password" />
-            <br /><br />
-            <h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
-            <h:message for="password"></h:message>
-            <br /><br />
-            <h:outputText value="Nombre y apellidos" />
-            <br /><br />
-            <h:inputText id="nomapel" value="#{login.nomapel}"></h:inputText>
-            <h:message for="nomapel"></h:message>
-            <br /><br />
-            
-            <br /><br />
-            <h:commandButton action="#{login.registrar}"
-                             value="Registrar"></h:commandButton>
-               <h:commandButton action="admin.xhtml" value="Volver atras" />
-        </h:form>
-    </h:body>
+        <div class="screen">
+            <div class="screen__content">
+                <h:body>
+                    <div class="box">
+                    <h:form>
+                        <h1>Registrar un nuevo usuario</h1>
+                        
+                        <div class="login__field"></div>
+                        <h:selectOneMenu value="#{login.type}">
+                            <f:selectItem itemValue = "admin" itemLabel = "Admin" /> 
+                            <f:selectItem itemValue = "Campo" itemLabel = "Campo" /> 
+                            <f:selectItem itemValue = "Laboratorio" itemLabel = "Laboratorio" /> 
+                            <f:selectItem itemValue = "Almacen" itemLabel = "Almacen" /> 
+                            <f:selectItem itemValue = "Hospital" itemLabel = "Hospital" /> 
+                        </h:selectOneMenu>
+                        
+                        <div class="login__field"></div>
+                        <h:outputText value="Nombre usuario" />
+                       <br /><br />
+                        <h:inputText id="username" value="#{login.user}" class="login__input" >
+                        </h:inputText>
+                        <h:message for="username"></h:message>
+                          <br /><br />
+                        <div class="login__field">
+                          
+                            <h:outputText value="Password" />
+                            <br /><br />
+                            <h:inputSecret id="password" value="#{login.pwd}" class="login__input" ></h:inputSecret>
+                            <h:message for="password"></h:message>
+                            
+                        </div>
+                        <div class="login__field">
+                            
+                            <h:outputText value="Nombre y apellidos" />
+                            <br /><br />
+                            <h:inputText id="nomapel" value="#{login.nomapel}" class="login__input"></h:inputText>
+                            <h:message for="nomapel"></h:message>
+                        </div>
+                        
+                        <div class="login__field">
+                            <h:commandLink class="button login__submit" action="#{login.registrar}" value="Registrar" styleClass="button login__submit">
+                                 <i class="button__icon fas fa-user-plus"></i>
+                            </h:commandLink>
+                            <h:commandLink class="button login__submit" action="admin.xhtml" value="Volver atras" styleClass="button login__submit">
+                                <i class="button__icon fas fa-sign-out-alt"></i>
+                            </h:commandLink>
+
+                        </div>
+                    </h:form></div>
+                </h:body>
+            </div>  </div>  </div>
 </html>
