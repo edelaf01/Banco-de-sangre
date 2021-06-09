@@ -74,7 +74,14 @@ body {
     right: 0;	
     border-radius: 32px;
 }
-
+.screen__background__shape9 {
+    height: 540px;
+    width: 190px;
+    background: linear-gradient(210deg, #5D54D3, #6A679E);
+    top: -24px;
+    right: 0;	
+    border-radius: 50px;
+}
 .screen__background__shape4 {
     height: 400px;
     width: 200px;

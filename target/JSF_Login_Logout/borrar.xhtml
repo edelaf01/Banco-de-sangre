@@ -6,47 +6,99 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Borrar</title>
-       
+        <link rel="stylesheet" href="borrar.css"></link>
+        <script src="https://kit.fontawesome.com/22e24bcbd3.js" crossorigin="anonymous"></script>
     </h:head>
-    <h:body onload="#{login.listaUsuario()}">
-        <h:form>
-            <h3>Borrar un usuario</h3>
-            <br /><br />
+    <div class="container">
 
-            <br /><br />
-            <h:outputText value="Username" />
-            <br /><br />
-            <h:inputText id="username" value="#{login.user}" onkeyup="#{login.listaUsuario2()}"></h:inputText>
-            <h:message for="username"></h:message>
-            <br /><br />
-            <h:commandButton action="#{login.borrar()}"
-                             value="Borrar"></h:commandButton>
-            <h:commandButton action="admin.xhtml" value="Volver atras" />
-            <h:commandButton action="#{login.listaUsuario()}"  value="Actualizar tabla" />
+        <div class="screen">
+            <div class="screen__content">
+                <h:body onload="#{login.listaUsuario()}">
+                    <div class="box">
+                        <h:form>
+                            <div class="box2">
+                                <div class="login__field" style="margin-left: 100px; margin-top: 50px">
+                                    <br></br>
+                                    <h1> 
+                                        Borrar un usuario</h1>
 
-        </h:form>
-        <h:form>
-            <p:dataTable  value="#{login.users}" var="user22"  filteredValue="#{login.usersFiltrados}"  widgetVar="customersTable" emptyMessage="No hay coincidencias" paginator="true"
-                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
-            <f:facet name="header">
-                <h:outputText value="Search fields:" />
-                <p:inputText id="globalFilter" onkeyup="PF('customersTable').filter()" style="width:150px" />
-                <p:separator />
-               
-            </f:facet>
-            <p:column  headerText="Nombre usuario" filterBy="#{user22.username}"  filterMatchMode="contains">
-                <h:outputText value="#{user22.username}" />
-            </p:column>
-            <p:column headerText="Tipo usuario" filterBy="#{user22.type}"  filterMatchMode="contains">
-                <h:outputText value="#{user22.type}" />
-            </p:column>
-            <p:column headerText="Ultima conexion" filterBy="#{user22.ulticonfec}"  filterMatchMode="contains" >
-                <h:outputText value="#{user22.ulticonfec}" />
-            </p:column>
+                                </div>
+                                <div class="login__field" style="text-align:center;">
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <h2> 
+                                        Nombre de usuario</h2>
 
-        </p:dataTable>
-</h:form>
-    </h:body>
+
+                                    <p:inputText  class="login__input" id="username" value="#{login.user}"  onkeyup="#{login.listaUsuario2()}"  ></p:inputText >
+                                </div>
+                                <div class="login__field2">
+                                    <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2">
+                                        <i class="button__icon fas fa-sign-out-alt"></i>
+                                    </h:commandLink>
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <br /><br />
+
+                            <br /><br />
+
+                            <h:message for="username"></h:message>
+                            <br /><br />
+                            <div class="login__field">
+                                <h:commandLink class="button login__submit" action="admin.xhtml" value="Volver atrás" styleClass="button login__submit">
+                                    <i class="button__icon fas fa-backward"></i>
+                                </h:commandLink>
+
+                                <h:commandLink class="button login__submit" action="#{login.listaUsuario()}" value="Actualizar tabla" styleClass="button login__submit">
+                                    <i class="button__icon fas fa-sync"></i>
+                                </h:commandLink>
+                                <h:commandLink class="button login__submit" action="#{login.borrar()}" value="Borrar" styleClass="button login__submit">
+                                    <i class="button__icon fas fa-user-slash "></i>
+                                </h:commandLink>
+                            </div>
+
+
+                        </h:form>
+
+                    </div>
+                    <div class="tabla">
+                        <h:form>
+                            <p:dataTable  value="#{login.users}" var="user22"  filteredValue="#{login.usersFiltrados}"  widgetVar="customersTable" emptyMessage="No hay coincidencias" paginator="true"
+                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                          rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
+                                <f:facet name="header">
+                                    <h:outputText value="Búsqueda global:" />
+                                    <p:inputText id="globalFilter" onkeyup="PF('customersTable').filter()" style="width:150px" />
+                                    <p:separator />
+
+                                </f:facet>
+                                <p:column  headerText="Nombre usuario"  filterBy="#{user22.username}" filterMatchMode="contains">
+                                    <h:outputText value="#{user22.username}" />
+                                </p:column>
+                                <p:column headerText="Tipo usuario" filterBy="#{user22.type}"  filterMatchMode="contains">
+                                    <h:outputText value="#{user22.type}" />
+                                </p:column>
+                                <p:column headerText="Ultima conexion" filterBy="#{user22.ulticonfec}"  filterMatchMode="contains" >
+                                    <h:outputText value="#{user22.ulticonfec}" />
+                                </p:column>
+
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+
+                </h:body>
+            </div>
+            <div class="screen__background"> <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span></div>
+
+        </div>
+    </div>
 </html>
