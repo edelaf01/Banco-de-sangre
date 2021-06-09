@@ -12,6 +12,17 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+
+import org.primefaces.PrimeFaces;
+import static org.primefaces.component.confirmpopup.ConfirmPopupBase.PropertyKeys.message;
+import org.primefaces.context.PrimeFacesContext;
+import org.springframework.web.servlet.support.RequestContext;
 import ule.edi.dao.BorrarDAO;
 
 import ule.edi.dao.LoginDAO;
@@ -113,7 +124,14 @@ public class Login implements Serializable {
     //validate login
     public String validateUsernamePassword() {
         String metodo = "login";
+        if (user.isEmpty() || pwd.isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Error ,",
+                    "Contraseña y usuario no pueden estar vacios"));
+
+            return "login";
+        }
         boolean valid = ldao.validate(user, pwd, type, metodo);
+
         if (valid) {
             //ultimo login
 
@@ -121,17 +139,21 @@ public class Login implements Serializable {
             session.setAttribute("username", user);
             type2 = type;
             user2 = user;
+            /* PrimeFaces current = PrimeFaces.current();
+
+            current.executeScript("PF('myDialogVar').show();");*/
+
+            dialogoLoginExitoso();
             return type;
 
         } else {
-          
-             FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Incorrect Username and Password",
-                            "Please enter correct username and Password"));
+            FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Usuario o contraseña incorrectos", ""));
             return "login";
         }
+    }
+
+    public void dialogoLoginExitoso() {
+
     }
 
     public void backup() {
@@ -158,7 +180,15 @@ public class Login implements Serializable {
 
     public String registrar() {
         String metodo = "login";
+        if (user.length() == 0 || pwd.length() == 0) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Error ,",
+                            "Contraseña y usuario no pueden estar vacios"));
+        }
         boolean valid = ldao.validate(user, pwd, type, metodo);
+
         if (!valid) {
 
             RegistroImpl rdao = new RegistroImpl();
@@ -188,6 +218,7 @@ public class Login implements Serializable {
 
     public String borrar() {
         String metodo = "borrar";
+
         boolean valid = ldao.validate(user, pwd, type, metodo);
         if (valid) {
 

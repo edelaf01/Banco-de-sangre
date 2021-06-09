@@ -50,15 +50,21 @@
                             </div>
                             <div>
 
-                                <h:commandLink class="button login__submit" action="#{login.validateUsernamePassword()}" value="Login" styleClass="button login__submit">
+                                <h:commandLink class="button login__submit"  action="#{login.validateUsernamePassword()}"  onclick="PF('myDialogVar').show();" value="Login" styleClass="button login__submit">
 
                                     <i class="button__icon fas fa-chevron-right" ></i>
 
                                 </h:commandLink>
-
+                                <p:dialog id="myDialogID" widgetVar="myDialogVar" modal="true" width="150" height="50">
+                                       <h:outputText value="Logueando..." class="label"/>
+                                </p:dialog>
+                                <div class="errorMensaje" style="position: absolute; top:-5px;">
+                                       <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
+                                </div>
+                             
 
                             </div>
-                          
+
                             <p>¿Se ha olvidado de su contraseña? </p>
                             <a href=""  style="color:#f1c40f;" >Contacte con el administrador.
                                 <p>correo@correo.com</p>
@@ -66,10 +72,13 @@
                         </h:form>
 
                     </div>
+
+
+
                 </h:body>
             </div>
             <div class="screen__background">
-                 
+
                 <span class="screen__background__shape screen__background__shape4"></span>
                 <span class="screen__background__shape screen__background__shape3"></span>		
                 <span class="screen__background__shape screen__background__shape2"></span>
