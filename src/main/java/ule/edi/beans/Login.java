@@ -11,7 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import org.primefaces.context.RequestContext;
+
 import ule.edi.dao.BorrarDAO;
 
 import ule.edi.dao.LoginDAO;
@@ -36,6 +36,7 @@ public class Login implements Serializable {
     private String nomapel;
     private String ulticonfec;
     private List<User> users;
+    private List<User> usersFiltrados;
 
     public String getPwd() {
         return pwd;
@@ -44,15 +45,25 @@ public class Login implements Serializable {
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
- public String getUser2() {
+
+    public String getUser2() {
         return user2;
     }
 
     public void setUser2(String pwd) {
         this.user2 = pwd;
     }
-    public List<User> getUserInfo() {
+
+    public List<User> getUsers() {
         return users;
+    }
+
+    public void setUsersFiltrados(List<User> users) {
+        this.usersFiltrados = users;
+    }
+
+    public List<User> getUsersFiltrados() {
+        return usersFiltrados;
     }
 
     public void setUsers(List<User> users) {
@@ -113,38 +124,38 @@ public class Login implements Serializable {
             return type;
 
         } else {
-            RequestContext context = RequestContext.getCurrentInstance();
-            RequestContext.getCurrentInstance();
-           /* FacesContext.getCurrentInstance().addMessage(
+          
+             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Incorrect Username and Password",
-                            "Please enter correct username and Password"));*/
+                            "Please enter correct username and Password"));
             return "login";
         }
     }
-    public void backup(){
+
+    public void backup() {
         try {
-      Process p = Runtime
-            .getRuntime().exec("F:/sql/bin/mysqldump -u root -ptoor aderlass");
-           
+            Process p = Runtime
+                    .getRuntime().exec("F:/sql/bin/mysqldump -u root -ptoor aderlass");
 
-      InputStream is = p.getInputStream();
-      FileOutputStream fos = new FileOutputStream("backup_pruebasA.sql");
-      byte[] buffer = new byte[1000];
+            InputStream is = p.getInputStream();
+            FileOutputStream fos = new FileOutputStream("backup_pruebasA.sql");
+            byte[] buffer = new byte[1000];
 
-      int leido = is.read(buffer);
-      while (leido > 0) {
-         fos.write(buffer, 0, leido);
-         leido = is.read(buffer);
-      }
+            int leido = is.read(buffer);
+            while (leido > 0) {
+                fos.write(buffer, 0, leido);
+                leido = is.read(buffer);
+            }
 
-      fos.close();
+            fos.close();
 
-   } catch (Exception e) {
-      e.printStackTrace();
-   }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
     public String registrar() {
         String metodo = "login";
         boolean valid = ldao.validate(user, pwd, type, metodo);
@@ -184,10 +195,10 @@ public class Login implements Serializable {
             User u = new User();
 
             u.setUsername(user);
-            
+
             rdao.borrarUser(u);
             user = user2;
-            
+
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
@@ -208,6 +219,19 @@ public class Login implements Serializable {
         u.setUsername(user);
 
         setUsers(rdao.generarTabla());
+
+    }
+
+    public void listaUsuario2() {
+        // String metodo = "borrar";
+        //boolean valid = ldao.validate(user, pwd, type, metodo);
+//\b+user+\b
+        BorrarDAO rdao = new BorrarDAO();
+        User u = new User();
+
+        u.setUsername(user);
+        String regex = "\\b" + user + "\\b";
+        setUsers(rdao.generarTabla2(regex));
 
     }
 

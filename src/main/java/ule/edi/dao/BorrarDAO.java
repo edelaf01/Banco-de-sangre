@@ -11,6 +11,7 @@ package ule.edi.dao;
  */
 import java.sql.Connection;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
 import org.hibernate.Query;
 
@@ -89,6 +90,41 @@ public class BorrarDAO {
             session.close();
         }
         return users;
+    } 
+    public List<User> generarTabla2(String regex) {
+
+        Connection con = null;
+        con = DataConnect.getConnection();
+        List<User> users = null;
+        try {
+         
+            session = HibernateUtil.getSessionFactory().openSession();
+
+            String hql = "FROM User ";
+
+            session.beginTransaction();
+
+            Query query = session.createQuery(hql);
+
+            if (!query.list().isEmpty()) {
+                
+                users=query.list();
+                System.out.println(users.toString());
+                return users;
+            }
+
+            session.flush();
+
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+
+        } finally {
+            DataConnect.close(con);
+            session.close();
+        }
+        return users;
     }
+    
 
 }

@@ -47,15 +47,15 @@
             <version>2.2.10</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<dependency>
-    <groupId>org.webjars</groupId>
-    <artifactId>font-awesome</artifactId>
-    <version>4.7.0</version>
-</dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+            <version>4.7.0</version>
+        </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>3.3</version>
+            <version>10.0.0</version>
         </dependency>
 
         <dependency>
