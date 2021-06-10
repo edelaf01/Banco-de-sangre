@@ -35,7 +35,7 @@ import ule.edi.util.SessionUtils;
 @SessionScoped
 public class Login implements Serializable {
 
-    private static final long serialVersionUID = 1094801825228386363L;
+    private static final long serialVersionUID = 1094801825228386362L;
     LoginDAO ldao = new LoginDAO();
 
     private String pwd;
@@ -143,127 +143,12 @@ public class Login implements Serializable {
 
             current.executeScript("PF('myDialogVar').show();");*/
 
-            dialogoLoginExitoso();
             return type;
 
         } else {
             FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Usuario o contraseña incorrectos", ""));
             return "login";
         }
-    }
-
-    public void dialogoLoginExitoso() {
-
-    }
-
-    public void backup() {
-        try {
-            Process p = Runtime
-                    .getRuntime().exec("F:/sql/bin/mysqldump -u root -ptoor aderlass");
-
-            InputStream is = p.getInputStream();
-            FileOutputStream fos = new FileOutputStream("backup_pruebasA.sql");
-            byte[] buffer = new byte[1000];
-
-            int leido = is.read(buffer);
-            while (leido > 0) {
-                fos.write(buffer, 0, leido);
-                leido = is.read(buffer);
-            }
-
-            fos.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String registrar() {
-        String metodo = "login";
-        if (user.length() == 0 || pwd.length() == 0) {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Error ,",
-                            "Contraseña y usuario no pueden estar vacios"));
-        }
-        boolean valid = ldao.validate(user, pwd, type, metodo);
-
-        if (!valid) {
-
-            RegistroImpl rdao = new RegistroImpl();
-            User u = new User();
-
-            byte[] b = pwd.getBytes();
-            u.setPassword(b);
-            u.setType(type);
-            u.setUsername(user);
-            u.setNomapel(nomapel);
-            java.util.Date dt = new java.util.Date();
-            u.setUlticonfec(dt);
-            System.out.println("El id es;" + u.getId());
-            rdao.addUser(u);
-            user = user2;
-            return "register";
-
-        } else {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Error usuario ya existe",
-                            "Introduzca otro usuario"));
-            return type2;
-        }
-    }
-
-    public String borrar() {
-        String metodo = "borrar";
-
-        boolean valid = ldao.validate(user, pwd, type, metodo);
-        if (valid) {
-
-            BorrarDAO rdao = new BorrarDAO();
-            User u = new User();
-
-            u.setUsername(user);
-
-            rdao.borrarUser(u);
-            user = user2;
-
-        } else {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Error usuario no encontrado",
-                            "Introduzca otro usuario"));
-        }
-        return "borrar";
-    }
-
-    public void listaUsuario() {
-        // String metodo = "borrar";
-        //boolean valid = ldao.validate(user, pwd, type, metodo);
-
-        BorrarDAO rdao = new BorrarDAO();
-        User u = new User();
-
-        u.setUsername(user);
-
-        setUsers(rdao.generarTabla());
-
-    }
-
-    public void listaUsuario2() {
-        // String metodo = "borrar";
-        //boolean valid = ldao.validate(user, pwd, type, metodo);
-//\b+user+\b
-        BorrarDAO rdao = new BorrarDAO();
-        User u = new User();
-
-        u.setUsername(user);
-        String regex = "\\b" + user + "\\b";
-        setUsers(rdao.generarTabla2(regex));
-
     }
 
     //logout event, invalidate session

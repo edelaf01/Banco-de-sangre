@@ -55,12 +55,14 @@
                                     <i class="button__icon fas fa-chevron-right" ></i>
 
                                 </h:commandLink>
-                                <p:dialog id="myDialogID" widgetVar="myDialogVar" modal="true" width="150" height="50">
+                                <p:dialog id="myDialogID" widgetVar="myDialogVar" modal="true"  width="150" closable="false" height="50">
                                        <h:outputText value="Logueando..." class="label"/>
                                 </p:dialog>
                                 <div class="errorMensaje" style="position: absolute; top:-5px;">
                                        <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
                                 </div>
+                                
+                                
                              
 
                             </div>

@@ -21,8 +21,8 @@ body {
 .screen {		
     background: linear-gradient(90deg, #5D54A4, #7C78B8);		
     position: relative;	
-    height: 700px;
-    width: 360px;	
+    height: 720px;
+    width: 370px;	
     box-shadow: 0px 0px 24px #5C5696;
 }
 
@@ -56,6 +56,59 @@ body {
     right: 120px;	
     border-radius: 0 72px 0 0;
 }
+.ui-selectonemenu.form-control {
+     margin-left: 5px;
+    color: #555 !important;
+    display: block !important;
+    margin-bottom: 0 !important;
+    padding: 5px 10px !important;
+    background-color: #fff !important;
+    border: 1px solid #ccc !important;
+}
+
+.radius-none {
+    border-radius: 0 !important;
+}
+
+.ui-selectonemenu.form-control .ui-selectonemenu-trigger {
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 100%;
+    padding: 0 5px;
+    cursor: pointer;
+    position: absolute;
+    margin: 0 !important;
+    border: none !important;
+    margin-top: 5px !important;
+    background: transparent !important;
+}.ui-selectonemenu .ui-selectonemenu-label {
+    width: 100%;
+    border: none;
+    display: block;
+    cursor: pointer;
+    text-align: left;
+    overflow: hidden;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    font-weight: normal;    
+}
+
+.ui-selectonemenu .ui-selectonemenu-label.ui-inputfield.ui-corner-all {
+    text-overflow: ellipsis;
+}
+
+.ui-inputfield {
+    margin: 0;
+    padding: 5px;
+    background: #ffffff;
+    font-weight: normal;
+    outline: medium none;
+   
+    box-shadow: inset 0 0 0 #8f8f8f!important;
+    -webkit-box-shadow: inset 0 0 0 #8f8f8f!important;
+}
+
 
 .screen__background__shape2 {
     height: 220px;
@@ -126,7 +179,7 @@ body {
     border-bottom-color: #6A679E;
 }
 .ui-selectonemenu.form-control {
-    
+
     color: #555 !important;
     display: block !important;
     margin-bottom: 0 !important;
@@ -190,7 +243,7 @@ body {
     align-items: center;
     width: 100%;
     color: #4C489D;
-   
+
     box-shadow: 0px 2px 2px #5C5696;
     cursor: pointer;
     transition: .2s;
@@ -198,7 +251,7 @@ body {
 }
 .login__submit{
     position:relative;
-   
+
 }
 .login__submit:active,
 .login__submit:focus,

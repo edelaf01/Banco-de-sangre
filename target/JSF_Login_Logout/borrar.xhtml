@@ -13,7 +13,7 @@
 
         <div class="screen">
             <div class="screen__content">
-                <h:body onload="#{login.listaUsuario()}">
+                <h:body onload="#{admin.listaUsuario()}">
                     <div class="box">
                         <h:form>
                             <div class="box2">
@@ -32,7 +32,10 @@
                                         Nombre de usuario</h2>
 
 
-                                    <p:inputText  class="login__input" id="username" value="#{login.user}"  onkeyup="#{login.listaUsuario2()}"  ></p:inputText >
+                                    <p:inputText  class="login__input" id="username" value="#{admin.user}"  onkeyup="#{admin.listaUsuario2()}"  ></p:inputText >
+                                </div>
+                                <div class="errorMensaje" style="position: absolute; top:-5px;">
+                                    <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
                                 </div>
                                 <div class="login__field2">
                                     <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2">
@@ -49,17 +52,28 @@
 
                             <h:message for="username"></h:message>
                             <br /><br />
+
+
+                            <div class="errorMensaje" style="position: absolute; top:-5px;">
+                                <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
+                            </div>
                             <div class="login__field">
                                 <h:commandLink class="button login__submit" action="admin.xhtml" value="Volver atrás" styleClass="button login__submit">
                                     <i class="button__icon fas fa-backward"></i>
                                 </h:commandLink>
 
-                                <h:commandLink class="button login__submit" action="#{login.listaUsuario()}" value="Actualizar tabla" styleClass="button login__submit">
+                                <h:commandLink class="button login__submit" action="#{admin.listaUsuario()}" value="Actualizar tabla" styleClass="button login__submit">
                                     <i class="button__icon fas fa-sync"></i>
                                 </h:commandLink>
-                                <h:commandLink class="button login__submit" action="#{login.borrar()}" value="Borrar" styleClass="button login__submit">
+                                <p:commandLink class="button login__submit"  value="Borrar" type="button" styleClass="button login__submit" style="text-decoration:none;color: #4C489D;;" onclick="PF('deleteDlg').show()">
                                     <i class="button__icon fas fa-user-slash "></i>
-                                </h:commandLink>
+                                </p:commandLink>
+                                <p:confirmDialog  widgetVar="deleteDlg" id="deleteDialog" header="Delete" message="Borrar al usuario indicado?" global="true"  showEffect="fade" hideEffect="explode" width="400" closable="true" severity="alert">
+                                    <h:panelGroup layout="block" style="text-align: right">
+                                        <p:commandButton value="Yes" action="#{admin.borrar()}" oncomplete="PF('deleteDlg').hide()" />
+                                        <p:commandButton value="No"   onclick="PF('deleteDlg').hide()" />
+                                    </h:panelGroup>
+                                </p:confirmDialog>
                             </div>
 
 
@@ -68,7 +82,7 @@
                     </div>
                     <div class="tabla">
                         <h:form>
-                            <p:dataTable  value="#{login.users}" var="user22"  filteredValue="#{login.usersFiltrados}"  widgetVar="customersTable" emptyMessage="No hay coincidencias" paginator="true"
+                            <p:dataTable  value="#{admin.users}" var="user22"  filteredValue="#{admin.usersFiltrados}"  widgetVar="customersTable" emptyMessage="No hay coincidencias" paginator="true"
                                           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                           currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                                           rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
@@ -81,6 +95,9 @@
                                 <p:column  headerText="Nombre usuario"  filterBy="#{user22.username}" filterMatchMode="contains">
                                     <h:outputText value="#{user22.username}" />
                                 </p:column>
+                                <p:column  headerText="Nombre y apellidos"  filterBy="#{user22.nomapel}" filterMatchMode="contains">
+                                    <h:outputText value="#{user22.nomapel}" />
+                                </p:column>
                                 <p:column headerText="Tipo usuario" filterBy="#{user22.type}"  filterMatchMode="contains">
                                     <h:outputText value="#{user22.type}" />
                                 </p:column>
@@ -91,6 +108,7 @@
                             </p:dataTable>
                         </h:form>
                     </div>
+
 
                 </h:body>
             </div>

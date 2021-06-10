@@ -17,7 +17,7 @@
                         <h:form>
                             <div class="box2">
                                 <div class="login__field">
-                                    <h1>Welcome #{login.user2}</h1>
+                                    <h1>Welcome #{login.user}</h1>
                                     
                                 </div>
                                 <div class="login__field2">
@@ -40,7 +40,7 @@
                             </div>
                             <div class="login__field">
 
-                                <h:commandLink class="button login__submit" action="#{login.backup()}" value="Backup base datos" styleClass="button login__submit">
+                                <h:commandLink class="button login__submit" action="#{admin.backup()}" value="Backup base datos" styleClass="button login__submit">
                                     <i class="button__icon fas fa-hdd"></i>
                                 </h:commandLink>
                             </div>
