@@ -20,7 +20,7 @@ import ule.edi.util.SessionUtils;
 
 @ManagedBean(name = "campoNombre")
 @SessionScoped
-public class Campo implements Serializable {
+public class Campo implements Serializable {    
 
     private static final long serialVersionUID = 1094801825228386362L;
     CampoDAO cdao;

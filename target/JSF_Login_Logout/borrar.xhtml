@@ -33,10 +33,11 @@
 
 
                                     <p:inputText  class="login__input" id="username" value="#{admin.user}"  onkeyup="#{admin.listaUsuario2()}"  ></p:inputText >
+                                    <div class="errorMensaje" style="position: absolute; top:200px; z-index: 99999">
+                                        <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
+                                    </div>
                                 </div>
-                                <div class="errorMensaje" style="position: absolute; top:-5px;">
-                                    <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
-                                </div>
+
                                 <div class="login__field2">
                                     <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2">
                                         <i class="button__icon fas fa-sign-out-alt"></i>
