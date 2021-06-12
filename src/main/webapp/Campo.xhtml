@@ -3,34 +3,84 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f = "http://java.sun.com/jsf/core">
+      xmlns:f = "http://java.sun.com/jsf/core"
+
+      xmlns:p="http://primefaces.org/ui">  
     <h:head>
         <title>Formulario</title>
+        <link rel="stylesheet" href="Campo.css"></link>
+        <script src="https://kit.fontawesome.com/22e24bcbd3.js" crossorigin="anonymous"></script>
     </h:head>
-    <h:body>
-        <h:form>
-            <p>Welcome #{login.user}</p>
-            <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
-            <p>Seleccione tipo de sangre a insertar</p>
-            <h:selectOneMenu value="#{campoNombre.tipoSangre}"  >
-                <f:selectItem itemValue = "A+" itemLabel = "A+" /> 
-                <f:selectItem itemValue = "B+" itemLabel = "B+" /> 
-                <f:selectItem itemValue = "O+" itemLabel = "O+" /> 
-                <f:selectItem itemValue = "AB+" itemLabel = "AB+" /> 
-                <f:selectItem itemValue = "A-" itemLabel = "A-" /> 
-                <f:selectItem itemValue = "B-" itemLabel = "B-" /> 
-                <f:selectItem itemValue = "O-" itemLabel = "O-" /> 
-                <f:selectItem itemValue = "AB-" itemLabel = "AB-" /> 
-            </h:selectOneMenu>
-            <p>Es valido?</p>
-            <h:selectOneMenu value="#{campoNombre.valido}"  >
-                <f:selectItem itemValue = "si" itemLabel = "Si" /> 
-                <f:selectItem itemValue = "no" itemLabel = "No" /> 
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
 
-            </h:selectOneMenu>
 
-            <h:commandButton action="#{campoNombre.anyadirSangre}"
-                             ></h:commandButton>
-        </h:form>
-    </h:body>
+                <h:body>
+                    <p:confirmDialog  widgetVar="deleteDlg" id="deleteDialog" header="Delete" message="Añadir la muestra seleccionada?" global="true"  showEffect="fade" hideEffect="explode" width="400" closable="true" severity="alert">
+                        <h:panelGroup layout="block" style="text-align: right">
+                            <p:commandButton value="Yes" action="#{campoNombre.anyadirSangre}" oncomplete="PF('deleteDlg').hide()" />
+                            <p:commandButton value="No"   onclick="PF('deleteDlg').hide()" />
+                        </h:panelGroup>
+                    </p:confirmDialog>
+                    <div class="box">
+                        <h:form>
+                            <div class="login__field">
+                                <h1>Bienvenido </h1>
+                                <h1> #{login.user}</h1>
+
+                            </div>
+                            <div class="login__field2">
+                                <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2">
+                                    <i class="button__icon fas fa-sign-out-alt"></i>
+                                </h:commandLink>
+                            </div>
+                            <div class="errorMensaje" style="position: absolute; top:-5px;">
+                                <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
+                            </div>
+                            <br></br>   <br></br>
+                            <div class="login__field">
+                                <h2>  Seleccione tipo de sangre </h2>
+                                <h2>  a insertar</h2>
+                                <p:selectOneMenu value="#{campoNombre.tipoSangre}" styleClass="form-control radius-none" style="width: 200px;" >
+                                    <f:selectItem itemValue = "A+" itemLabel = "A+" /> 
+                                    <f:selectItem itemValue = "B+" itemLabel = "B+" /> 
+                                    <f:selectItem itemValue = "O+" itemLabel = "O+" /> 
+                                    <f:selectItem itemValue = "AB+" itemLabel = "AB+" /> 
+                                    <f:selectItem itemValue = "A-" itemLabel = "A-" /> 
+                                    <f:selectItem itemValue = "B-" itemLabel = "B-" /> 
+                                    <f:selectItem itemValue = "O-" itemLabel = "O-" /> 
+                                    <f:selectItem itemValue = "AB-" itemLabel = "AB-" /> 
+                                </p:selectOneMenu>
+
+                            </div>
+                            <div class="login__field">
+                                <h1>Es valido?</h1>
+
+                                <p:selectOneMenu value="#{campoNombre.valido}" styleClass="form-control radius-none" style="width: 200px;" >
+                                    <f:selectItem itemValue = "si" itemLabel = "Si" /> 
+                                    <f:selectItem itemValue = "no" itemLabel = "No" /> 
+
+                                </p:selectOneMenu>
+                             
+                                <p:commandLink onclick="PF('deleteDlg').show()" value="Validar" styleClass="button login__submit" style="text-decoration:none;color: #4C489D;;">
+
+                                    <i class="fas fa-check" style="right: 20px"></i>
+
+                                </p:commandLink>
+
+                            </div>
+
+                        </h:form>
+                    </div>
+                </h:body>
+            </div>
+            <div class="screen__background">
+
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>	
+        </div>
+    </div>
 </html>
