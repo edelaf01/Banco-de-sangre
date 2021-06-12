@@ -135,10 +135,13 @@ public class Admin implements Serializable {
                 fos.write(buffer, 0, leido);
                 leido = is.read(buffer);
             }
-
+              FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha creado correctamente la copia de seguridad de la base de datos",
+                    "Ruta : C:\\Users\\kkkk\\GlassFish_Server\\glassfish\\domains\\domainNOSE\\config"));
             fos.close();
 
         } catch (Exception e) {
+               FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Se error algo ha salido mal al hacer la copia de seguridad",
+                    "Ruta : C:\\Users\\kkkk\\GlassFish_Server\\glassfish\\domains\\domainNOSE\\config"));
             e.printStackTrace();
         }
     }
@@ -147,7 +150,7 @@ public class Admin implements Serializable {
         String metodo = "login";
         //System.out.println("AAAAAAAAAAAAAAAAAAAAA" + user.isEmpty() + pwd.isEmpty() + nomapel.isEmpty());
         if (user.isEmpty() || nomapel.isEmpty() || pwd.isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Error ,",
+            FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error ,",
                     "Contraseña y usuario no pueden estar vacios"));
 
         } else {
@@ -167,11 +170,11 @@ public class Admin implements Serializable {
                 u.setUlticonfec(dt);
                 System.out.println("El id es;" + u.getId());
                 rdao.addUser(u);
-                FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Se ha registrado ,",
+                FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_INFO, "Se ha registrado ,",
                         "Satisfactoriamente a " + user));
 
             } else {
-                FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Error usuario '" + user + "' ya existe",
+                FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error usuario '" + user + "' ya existe",
                         "Introduzca otro usuario"));
 
             }
@@ -190,8 +193,8 @@ public class Admin implements Serializable {
             u.setUsername(user);
 
             rdao.borrarUser(u);
-            FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Operacion hecha satisfactoriamente",
-                    "Se ha borrado " + user));
+            FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_INFO, " ",
+                    "Se ha borrado a " + user));
 
         } else {
             FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Error usuario no encontrado",

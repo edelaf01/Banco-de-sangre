@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Panel de control administrador</title>
         <link rel="stylesheet" href="admin.css"></link>
@@ -18,7 +18,9 @@
                             <div class="box2">
                                 <div class="login__field">
                                     <h1>Welcome #{login.user}</h1>
-                                    
+                                    <div class="errorMensaje" style="position: absolute; top:-200px; z-index: 999">
+                                        <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
+                                    </div>
                                 </div>
                                 <div class="login__field2">
                                     <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2">
@@ -48,8 +50,8 @@
                     </div>
                 </h:body>
             </div>
-                <div class="screen__background">
-                <span class="screen__background__shape screen__background__shape6"></span>
+            <div class="screen__background">
+
                 <span class="screen__background__shape screen__background__shape3"></span>		
                 <span class="screen__background__shape screen__background__shape2"></span>
                 <span class="screen__background__shape screen__background__shape1"></span>
