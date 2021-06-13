@@ -12,21 +12,11 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 
-import org.primefaces.PrimeFaces;
-import static org.primefaces.component.confirmpopup.ConfirmPopupBase.PropertyKeys.message;
-import org.primefaces.context.PrimeFacesContext;
-import org.springframework.web.servlet.support.RequestContext;
 import ule.edi.dao.BorrarDAO;
 
 import ule.edi.dao.LoginDAO;
-import ule.edi.dao.RegistroDAO;
+
 import ule.edi.dao.RegistroImpl;
 import ule.edi.model.User;
 import ule.edi.util.SessionUtils;
@@ -43,7 +33,7 @@ public class Admin implements Serializable {
     private String user;
     private String type;
     private String user2;
-    private String type2;
+   
     private String nomapel;
     private String ulticonfec;
     private List<User> users;
@@ -68,7 +58,9 @@ public class Admin implements Serializable {
     public List<User> getUsers() {
         return users;
     }
-
+     public void setUsers(List<User> users) {
+        this.users = users;
+    }
     public void setUsersFiltrados(List<User> users) {
         this.usersFiltrados = users;
     }
@@ -77,9 +69,7 @@ public class Admin implements Serializable {
         return usersFiltrados;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+   
 
     public String getNomapel() {
         return nomapel;
@@ -209,9 +199,7 @@ public class Admin implements Serializable {
         //boolean valid = ldao.validate(user, pwd, type, metodo);
 
         BorrarDAO rdao = new BorrarDAO();
-        User u = new User();
-
-        u.setUsername(user);
+       
 
         setUsers(rdao.generarTabla());
 
@@ -221,12 +209,7 @@ public class Admin implements Serializable {
         // String metodo = "borrar";
         //boolean valid = ldao.validate(user, pwd, type, metodo);
 //\b+user+\b
-        BorrarDAO rdao = new BorrarDAO();
-        User u = new User();
-
-        u.setUsername(user);
-        String regex = "\\b" + user + "\\b";
-        setUsers(rdao.generarTabla2(regex));
+        
 
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -23,16 +23,18 @@ import ule.edi.util.SessionUtils;
 @SessionScoped
 public class Laboratorio implements Serializable {
 
-    private static final long serialVersionUID = 1094801825228386360L;
+    private static final long serialVersionUID = 1094801825228386322L;
     private LaboratorioDAO ldao;
     private Integer id;
     private String msg;
 
     private String tipoSangre;
 
-    private List<Donantevalidar> listaValidar;
+    private List<Donantevalidar> users;
+    private List<Donantevalidar> usersFiltrados;
 
     public Integer getId() {
+
         return id;
     }
 
@@ -40,12 +42,20 @@ public class Laboratorio implements Serializable {
         this.id = pwd;
     }
 
-    public List<Donantevalidar> getListaValidar() {
-        return listaValidar;
+    public List<Donantevalidar> getUsers() {
+        return users;
     }
 
-    public void setListaValidar(List<Donantevalidar> users) {
-        this.listaValidar = users;
+    public void setListavalidar(List<Donantevalidar> users) {
+        this.users = users;
+    }
+
+    public void setUsersFiltrados(List<Donantevalidar> users) {
+        this.usersFiltrados = users;
+    }
+
+    public List<Donantevalidar> getUsersFiltrados() {
+        return usersFiltrados;
     }
 
     public String getTipoSangre() {
@@ -124,11 +134,9 @@ public class Laboratorio implements Serializable {
         }
     }
 
-    public List<Donantevalidar> listaSangre() {
+    public void listaSangre() {
         LaboratorioImpl ldao2 = new LaboratorioImpl();
-        setListaValidar(ldao2.generarTabla());
-
-        return listaValidar;
+        setListavalidar(ldao2.generarTabla());
 
     }
 

@@ -14,6 +14,7 @@ ule\edi\model\User.class
 ule\edi\model\Pedidoshechos.class
 ule\edi\dao\HospitalImpl.class
 ule\edi\dao\RegistroDAO.class
+ule\edi\model\DonantevalidarAUX.class
 ule\edi\util\DataConnect.class
 ule\edi\util\SessionUtils.class
 ule\edi\model\Stocksangrealmacen.class

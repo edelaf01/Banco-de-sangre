@@ -1,51 +1,124 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:f = "http://java.sun.com/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Almacen</title>
+        <title>Laboratorio</title>
+        <link rel="stylesheet" href="borrar.css"></link>
+      
+        <script src="https://kit.fontawesome.com/22e24bcbd3.js" crossorigin="anonymous"></script>
     </h:head>
-    <h:body>
-        <h:form>
-            <p>Welcome #{login.user}</p>
-            <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
+    <div class="container">
 
-            <br /><br />
-            <h:outputText value="Introduza el id que quiere ser borrado o validado" />
-            <h:inputText id="id" value="#{laboratorio.id}"></h:inputText>
-            <br /><br />
-            <h:commandButton action="#{laboratorio.addSangre()}"
-                             value="Validar sangre"></h:commandButton>
-            <br /><br />
-            <h:commandButton action="#{laboratorio.borrarSangre()}"
-                             value="Borrar sangre"></h:commandButton>
-            <br /><br />
-            <h:commandButton action="#{laboratorio.listaSangre()}" value="Actualizar tabla" />
-        </h:form>
-        
-        <h:form prependId="false">
-            <h:dataTable  value="#{laboratorio.listaValidar}" var="user22" border="2"
-                          cellspacing="1" cellpadding="1">
-                <h:column>
-                    <f:facet name = "header">ID</f:facet>   
-                    <h:link value="#{user22.id}" outcome="user22">
-                        <f:param name="username" value="#{user22.id}" />
-                    </h:link>
-                </h:column>
-                <h:column>
-                      <f:facet name = "header">TIPO SANGRE</f:facet>  
-                    <h:link value="#{user22.tipo}" outcome="user22">
-                        <f:param name="type" value="#{user22.tipo}" />
-                    </h:link>
-                </h:column>
-                <h:column>
-                      <f:facet name = "header">FECHA</f:facet>  
-                    <h:link value="#{user22.fecha}" outcome="user22">
-                        <f:param name="ulticonfec" value="#{user22.fecha}" />
-                    </h:link>
-                </h:column>
-            </h:dataTable>
-        </h:form>
-    </h:body>
+        <div class="screen">
+            <div class="screen__content">
+                <h:body onload="#{laboratorio.listaSangre()}">
+                    <div class="box">
+                        <h:form>
+                            <div class="box2">
+                                <div class="login__field" style="margin-left: 100px; margin-top: 50px">
+                                    <br></br>
+                                    <h1> 
+                                        Validar muestras</h1>
+
+                                </div>
+                                <div class="login__field" style="text-align:center;">
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <h2> 
+                                        Nombre de usuario</h2>
+
+
+                                    <p:inputText  class="login__input" id="username" value="#{laboratorio.id}"    ></p:inputText >
+                                    <div class="errorMensaje" style="position: absolute; top:200px; z-index: 99999">
+                                        <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
+                                    </div>
+                                </div>
+
+                                <div class="login__field2">
+                                    <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2">
+                                        <i class="button__icon fas fa-sign-out-alt"></i>
+                                    </h:commandLink>
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <br /><br />
+
+                            <br /><br />
+
+                            <h:message for="username"></h:message>
+                            <br /><br />
+
+
+                            <div class="errorMensaje" style="position: absolute; top:-5px;">
+                                <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
+                            </div>
+                            <div class="login__field">
+                                <p:commandLink class="button login__submit"  value="Borrar" type="button" styleClass="button login__submit" style="text-decoration:none;color: #4C489D;;" onclick="PF('deleteDlg').show()">
+                                    <i class="button__icon fas fa-trash "></i>
+                                </p:commandLink>
+
+                                <h:commandLink class="button login__submit" action="#{laboratorio.listaSangre()}" value="Actualizar tabla" styleClass="button login__submit" style="position: relative; margin-left: 80px;">
+                                    <i class="button__icon fas fa-sync"></i>
+                                </h:commandLink>
+
+                                <p:commandLink class="button login__submit"  value="Anyadir" type="button" styleClass="button login__submit" style="text-decoration:none;color: #4C489D;;" onclick="PF('validarDlg').show()">
+                                    <i class="button__icon fas fa-paper-plane "></i>
+                                </p:commandLink>
+
+                            </div>
+
+
+                        </h:form>
+
+                    </div> 
+                    <div class="tabla">
+                        <h:form>
+                            <p:dataTable  value="#{laboratorio.users}" var="var" filteredValue="#{laboratorio.usersFiltrados}" widgetVar="customersTable" emptyMessage="No hay coincidencias" paginator="true"
+                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                          rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
+                                <f:facet name="header">
+                                    <h:outputText value="Busqueda global:" />
+                                    <p:inputText id="globalFilter" onkeyup="PF('customersTable').filter()" style="width:150px" />
+                                    <p:separator />
+
+                                </f:facet>
+                                <p:column filterBy="#{var.id}" headerText="Id"    filterMatchMode="contains">
+                                    <h:outputText value="#{var.id}" />
+                                </p:column>
+                                <p:column filterBy="#{var.tipo}" headerText="Tipo de sangre"   filterMatchMode="contains">
+                                    <h:outputText value="#{var.tipo}" />
+                                </p:column>
+
+                                <p:column filterBy="#{var.fecha}" headerText="Fecha"   filterMatchMode="contains">
+                                    <h:outputText value="#{var.fecha}" />
+                                </p:column>
+
+
+
+
+                            </p:dataTable>
+                        </h:form>
+
+
+
+                    </div>
+
+
+                </h:body>
+            </div>
+            <div class="screen__background"> <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span></div>
+
+        </div>
+    </div>
 </html>

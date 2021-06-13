@@ -106,19 +106,26 @@ public class LaboratorioImpl {
         con = DataConnect.getConnection();
         List<Donantevalidar> listaSangre = null;
         try {
-            System.out.println("Probando");
+            
             session = HibernateUtil.getSessionFactory().openSession();
-            System.out.println("Probando");
+            
             String hql = "FROM Donantevalidar ";
 
             session.beginTransaction();
-            System.out.println("Probando");
+          
             Query query = session.createQuery(hql);
 
             if (!query.list().isEmpty()) {
-                System.out.println("Probando");
+              
                 listaSangre = query.list();
-                System.out.println(listaSangre.toString());
+                for(int i=0;i<listaSangre.size();i++){
+                     System.out.println();
+                    System.out.println(listaSangre.get(i).getId());
+                     System.out.println(listaSangre.get(i).getTipo());
+                      System.out.println(listaSangre.get(i).getFecha());
+                       System.out.println();
+                }
+              
                 return listaSangre;
             }
 

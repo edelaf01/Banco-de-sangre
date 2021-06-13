@@ -32,7 +32,7 @@
                                         Nombre de usuario</h2>
 
 
-                                    <p:inputText  class="login__input" id="username" value="#{admin.user}"  onkeyup="#{admin.listaUsuario2()}"  ></p:inputText >
+                                    <p:inputText  class="login__input" id="username" value="#{admin.user}"    ></p:inputText >
                                     <div class="errorMensaje" style="position: absolute; top:200px; z-index: 99999">
                                         <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
                                     </div>
@@ -93,6 +93,7 @@
                                     <p:separator />
 
                                 </f:facet>
+                              
                                 <p:column  headerText="Nombre usuario"  filterBy="#{user22.username}" filterMatchMode="contains">
                                     <h:outputText value="#{user22.username}" />
                                 </p:column>

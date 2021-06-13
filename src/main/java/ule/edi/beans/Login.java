@@ -1,9 +1,6 @@
 package ule.edi.beans;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -12,22 +9,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
-
-import org.primefaces.PrimeFaces;
-import static org.primefaces.component.confirmpopup.ConfirmPopupBase.PropertyKeys.message;
-import org.primefaces.context.PrimeFacesContext;
-import org.springframework.web.servlet.support.RequestContext;
-import ule.edi.dao.BorrarDAO;
 
 import ule.edi.dao.LoginDAO;
-import ule.edi.dao.RegistroDAO;
-import ule.edi.dao.RegistroImpl;
 import ule.edi.model.User;
 import ule.edi.util.SessionUtils;
 
