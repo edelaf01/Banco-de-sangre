@@ -1,5 +1,5 @@
 package ule.edi.model;
-// Generated 30-may-2021 21:47:07 by Hibernate Tools 4.3.1
+// Generated 18-jun-2021 23:36:29 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,7 +10,7 @@ import java.util.Date;
 public class Inventariohospital  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private Date fecha;
      private String tipoSangre;
      private String nombreDuenyo;
@@ -19,23 +19,21 @@ public class Inventariohospital  implements java.io.Serializable {
     }
 
 	
-    public Inventariohospital(int id, String tipoSangre, String nombreDuenyo) {
-        this.id = id;
+    public Inventariohospital(String tipoSangre, String nombreDuenyo) {
         this.tipoSangre = tipoSangre;
         this.nombreDuenyo = nombreDuenyo;
     }
-    public Inventariohospital(int id, Date fecha, String tipoSangre, String nombreDuenyo) {
-       this.id = id;
+    public Inventariohospital(Date fecha, String tipoSangre, String nombreDuenyo) {
        this.fecha = fecha;
        this.tipoSangre = tipoSangre;
        this.nombreDuenyo = nombreDuenyo;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Date getFecha() {

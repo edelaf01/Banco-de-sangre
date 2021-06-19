@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.faces.bean.ManagedBean;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import ule.edi.dao.HospitalImpl;
@@ -106,6 +106,7 @@ public class Hospital implements Serializable {
         p.setFecha(date);
         p.setTipo(tipo);
         p.setDosis(dosis);
+        p.setUsuarioDestino(nombreUsuario);
         HospitalImpl hdao = new HospitalImpl();
         List<User> jeje = hdao.getUserId(nombreUsuario);
         if (jeje.isEmpty()) {
@@ -122,7 +123,8 @@ public class Hospital implements Serializable {
                             "Error el usuario no es de tipo hospital no se le puede enviar", ""
                     ));
             } else {
-                p.setDestinatarioid(jeje.get(0).getId());
+                p.setUsuarioDestino(jeje.get(0).getUsername());
+                //p.setDestinatarioid(jeje.get(0).getId());
                 hdao.hacerPedido(p);
                  FacesContext.getCurrentInstance().addMessage(
                     null,

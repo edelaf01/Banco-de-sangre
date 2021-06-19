@@ -25,7 +25,7 @@ import ule.edi.model.User;
 import ule.edi.util.DataConnect;
 
 @Repository
-public class CampoImpl implements CampoDAO {
+public class CampoImpl  {
 
     private static final Logger logger = LoggerFactory.getLogger(CampoImpl.class);
     private Session session;
@@ -33,7 +33,7 @@ public class CampoImpl implements CampoDAO {
 
   
 
-    @Override
+   
     @Transactional
     public void addSangre(Donantevalidar u) {
         Transaction transaction = null;
@@ -60,7 +60,7 @@ public class CampoImpl implements CampoDAO {
         }
     }
 
-    @Override
+    
     public List<Donantevalidar> listPersons() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

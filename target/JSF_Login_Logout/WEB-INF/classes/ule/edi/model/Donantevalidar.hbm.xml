@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 30-may-2021 21:47:08 by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-jun-2021 23:36:30 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="aderlass" name="ule.edi.model.Donantevalidar" optimistic-lock="version" table="donantevalidar">
-    <id name="id" type="java.lang.Integer">
-      <column name="id"/>
-      <generator class="identity"/>
-    </id>
-    <property name="tipo" type="string">
-      <column length="45" name="Tipo"/>
-    </property>
-    <property name="fecha" type="timestamp">
-      <column length="19" name="fecha" not-null="true"/>
-    </property>
-  </class>
+    <class name="ule.edi.model.Donantevalidar" table="donantevalidar" catalog="aderlass" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="tipo" type="string">
+            <column name="Tipo" length="45" />
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true" />
+        </property>
+    </class>
 </hibernate-mapping>

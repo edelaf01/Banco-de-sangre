@@ -1,5 +1,5 @@
 package ule.edi.model;
-// Generated 30-may-2021 21:47:07 by Hibernate Tools 4.3.1
+// Generated 18-jun-2021 23:36:29 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,35 +10,33 @@ import java.util.Date;
 public class Pedidos  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private Date fecha;
      private String tipo;
      private int dosis;
-     private int destinatarioid;
+     private String usuarioDestino;
 
     public Pedidos() {
     }
 
 	
-    public Pedidos(int id, String tipo, int dosis, int destinatarioid) {
-        this.id = id;
+    public Pedidos(String tipo, int dosis, String usuarioDestino) {
         this.tipo = tipo;
         this.dosis = dosis;
-        this.destinatarioid = destinatarioid;
+        this.usuarioDestino = usuarioDestino;
     }
-    public Pedidos(int id, Date fecha, String tipo, int dosis, int destinatarioid) {
-       this.id = id;
+    public Pedidos(Date fecha, String tipo, int dosis, String usuarioDestino) {
        this.fecha = fecha;
        this.tipo = tipo;
        this.dosis = dosis;
-       this.destinatarioid = destinatarioid;
+       this.usuarioDestino = usuarioDestino;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Date getFecha() {
@@ -62,12 +60,12 @@ public class Pedidos  implements java.io.Serializable {
     public void setDosis(int dosis) {
         this.dosis = dosis;
     }
-    public int getDestinatarioid() {
-        return this.destinatarioid;
+    public String getUsuarioDestino() {
+        return this.usuarioDestino;
     }
     
-    public void setDestinatarioid(int destinatarioid) {
-        this.destinatarioid = destinatarioid;
+    public void setUsuarioDestino(String usuarioDestino) {
+        this.usuarioDestino = usuarioDestino;
     }
 
 

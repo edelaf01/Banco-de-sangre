@@ -3,85 +3,168 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f = "http://java.sun.com/jsf/core">
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Laboratorio</title>
-    </h:head>
-    <h:body>
-        <h:form>
-            <p>Welcome #{login.user}</p>
-            <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
-            <br /><br />
-            <h:outputText value="Introduza el id que quiere ser borrado o validado" />
-            <h:inputText id="id" value="#{pedidos.id}"></h:inputText>
-            <br /><br />
-            <h:commandButton action="#{pedidos.enviarPedido()}"
-                             value="Enviar sangre con el id introducido"></h:commandButton>
-            <br /><br />
-            <h:commandButton action="#{pedidos.listaStockAlmacen()}"
-                             value="Actualizar tablas "></h:commandButton>
-            <br /><br />
+        <title>Almacen</title>
+        <link rel="stylesheet" href="almacen.css"></link>
 
-        </h:form>
-        <h:form prependId="false">
-              <f:facet name = "header">Tipo de sangre pedida</f:facet>  
-            <h:dataTable  value="#{pedidos.listaAlmacen}" var="user23" border="2"
-                          cellspacing="1" cellpadding="1">
-                <h:column>
-                      <f:facet name = "header">ID Sangre</f:facet>  
-                    <h:link value="#{user23.id}" >
-                        <f:param name="id" value="#{user23.id}" />
-                    </h:link>
-                </h:column>
-                <h:column>
-                      <f:facet name = "header">Tipo de sangre disponible</f:facet>  
-                    <h:link value="#{user23.tipo}" >
-                        <f:param name="tipo" value="#{user23.tipo}" />
-                    </h:link>
-                </h:column>
-                <h:column>
-                      <f:facet name = "header">Fecha obtencion</f:facet>  
-                    <h:link value="#{user23.fecha}" >
-                        <f:param name="fecha" value="#{user23.fecha}" />
-                    </h:link>
-                </h:column>
-            </h:dataTable>
-        </h:form>
-        
-        <h:form prependId="false">
-            <h:dataTable  value="#{pedidos.listaPedidos}" var="user22" border="2"
-                          cellspacing="1" cellpadding="1">
-                <h:column>
-                    <f:facet name = "header">ID PEDIDO</f:facet>  
-                    <h:link value="#{user22.id}">
-                        <f:param name="destinatarioid" value="#{user22.destinatarioid}" />
-                    </h:link>
-                </h:column>
-                <h:column>
-                    <f:facet name = "header">ID DESTINATARIO</f:facet>  
-                    <h:link value="#{user22.destinatarioid}">
-                        <f:param name="destinatarioid" value="#{user22.destinatarioid}" />
-                    </h:link>
-                </h:column>
-                <h:column>
-                     <f:facet name = "header">Numero de dosis pedidas</f:facet>  
-                    <h:link value="#{user22.dosis}" >
-                        <f:param name="dosis" value="#{user22.dosis}" />
-                    </h:link>
-                </h:column>
-                <h:column>
-                     <f:facet name = "header">Fecha pedido</f:facet>  
-                    <h:link value="#{user22.fecha}" outcome="user22">
-                        <f:param name="fecha" value="#{user22.fecha}" />
-                    </h:link>
-                </h:column>
-                <h:column>
-                     <f:facet name = "header">Tipo de sangre pedida</f:facet>  
-                    <h:link value="#{user22.tipo}" >
-                        <f:param name="tipo" value="#{user22.tipo}" />
-                    </h:link>
-                </h:column>
-            </h:dataTable>
-        </h:form>
-    </h:body>
+        <script src="https://kit.fontawesome.com/22e24bcbd3.js" crossorigin="anonymous"></script>
+    </h:head>
+    <div class="container">
+
+        <div class="screen">
+            <div class="screen__content">
+                <h:body>
+                    <p:confirmDialog  widgetVar="dlgEnvio" id="deleteDialog" header="Enviar" message="Enviar al usuario indicado?" global="true"  showEffect="fade" hideEffect="explode" width="400" closable="true" severity="alert">
+                        <h:panelGroup layout="block" style="text-align: right">
+                            <p:commandButton value="Yes" action="#{pedidos.enviarPedido()}" oncomplete="PF('dlgEnvio').hide()" />
+                            <p:commandButton value="No"   onclick="PF('dlgEnvio').hide()" />
+                        </h:panelGroup>
+                    </p:confirmDialog>
+                    <div class="box">
+                        <h:form>
+                            <div class="login__field">
+                                <p:messages for="MessageId" showDetail="true"  closable="true" style="z-index: 99999 ;position: absolute; width: 99%; margin-bottom: -20% ">
+                                    <p:autoUpdate/></p:messages>
+                                <h1>Welcome #{login.user}</h1>
+                                <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2">
+                                    <i class="button__icon fas fa-sign-out-alt"></i>
+                                </h:commandLink>
+                            </div>
+                            <br /><br />
+                            <br /><br />
+                            <h2>Introduza el id del pedido a realizar</h2>
+                            <div class="login__field">
+                                <br /><br />
+                                <p:inputText  class="login__input" id="username" value="#{pedidos.id}"  style="margin-left: 24% ; width: 50%"  ></p:inputText >
+                            </div>
+                            <br /><br />
+                            <p:commandLink class="button login__submit"  value="Envio" type="button" styleClass="button login__submit" style="text-decoration:none;color: #4C489D;;" onclick="PF('dlgEnvio').show()">
+                                <i class="button__icon fas fa fa-paper-plane "></i>
+                            </p:commandLink>
+                            <p:commandLink class="button login__submit"  value="Actualizar tablas" type="button" styleClass="button login__submit" style="text-decoration:none;color: #4C489D;;" onclick="#{pedidos.listaStockAlmacen()}">
+                                <i class="button__icon fas fa fa-refresh "></i>
+                            </p:commandLink>
+                            <br /><br />
+
+                        </h:form>
+                        <div style="display: inline-block;">
+                            <h2>Tabla almacen de sangre</h2>
+                            <div style="margin-top: 10%;margin-bottom: 20%"> 
+                                <h:form prependId="false">
+                                    <f:facet name = "header">Tipo de sangre pedida</f:facet>  
+                                    <p:dataTable  value="#{pedidos.listaAlmacen}" var="var" filteredValue="#{pedidos.listaAlmacenFiltrada}" widgetVar="tablaPedidos" emptyMessage="No hay coincidencias" paginator="true"
+                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                  currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                                  rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;" >
+                                        <f:facet name="header">
+                                            <h:outputText value="Busqueda global:" />
+                                            <p:inputText id="globalFilter" onkeyup="PF('tablaPedidos').filter()" style="width:150px" />
+                                            <h:outputText value="       Sangre disponible almacen" style="margin-left: 50px"/>
+                                            <p:separator />
+
+                                        </f:facet>
+                                        <p:column filterBy="#{var.id}" headerText="ID"    filterMatchMode="contains">
+                                            <h:outputText value="#{var.id}" />
+                                        </p:column>
+                                        <p:column filterBy="#{var.tipo}" headerText="Tipo de sangre"   filterMatchMode="contains">
+                                            <h:outputText value="#{var.tipo}" />
+                                        </p:column>
+
+
+                                        <p:column filterBy="#{var.fecha}" headerText="Fecha"   filterMatchMode="contains">
+                                            <h:outputText value="#{var.fecha}" />
+                                        </p:column>
+
+                                    </p:dataTable>
+
+                                </h:form>
+                            </div>
+                            <div>
+
+                                <h2>Tabla pedidos activos</h2>
+                                <br /><br />
+                                <h:form prependId="false">
+                                    <p:dataTable  value="#{pedidos.listaPedidos}" var="var" filteredValue="#{pedidos.listaPedidosFiltrada}" widgetVar="tablaAlmacen" emptyMessage="No hay coincidencias" paginator="true"
+                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                  currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                                  rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
+                                        <f:facet name="header">
+                                            <h:outputText value="Busqueda global:" />
+                                            <p:inputText id="globalFilter" onkeyup="PF('tablaAlmacen').filter()" style="width:150px" />
+                                            <h:outputText value="       Pedidos disponibles para completar" style="margin-left: 50px"/>
+                                            <p:separator />
+
+                                        </f:facet>
+                                        <p:column filterBy="#{var.id}" headerText="ID pedido"  filterMatchMode="contains">
+                                            <h:outputText value="#{var.id}" />
+                                        </p:column>
+                                        <p:column filterBy="#{var.usuarioDestino}" headerText="Usuario destino"    filterMatchMode="contains">
+                                            <h:outputText value="#{var.usuarioDestino}" />
+                                        </p:column>
+                                        <p:column filterBy="#{var.tipo}" headerText="Tipo de sangre"   filterMatchMode="contains">
+                                            <h:outputText value="#{var.tipo}" />
+                                        </p:column>
+
+
+                                        <p:column filterBy="#{var.dosis}" headerText="Cantidad pedido"   filterMatchMode="contains">
+                                            <h:outputText value="#{var.dosis}" />
+                                        </p:column>
+                                        <p:column filterBy="#{var.fecha}" headerText="Fecha Pedido"   filterMatchMode="contains">
+                                            <h:outputText value="#{var.fecha}" />
+                                        </p:column>
+                                    </p:dataTable>
+
+
+                                </h:form>
+                                <h:form prependId="false">
+                                      <h2>Tabla pedidos completados</h2>
+                                    <p:dataTable  value="#{pedidos.listaPedidosH}" var="var2" filteredValue="#{pedidos.listaPedidosFiltradaH}" widgetVar="tablaPedidosH" emptyMessage="No hay coincidencias" paginator="true"
+                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                  currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                                  rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
+                                        <f:facet name="header">
+                                            <h:outputText value="Busqueda global:" />
+                                            <p:inputText id="globalFilter" onkeyup="PF('tablaPedidosH').filter()" style="width:150px" />
+                                            <h:outputText value="       Pedidos completados" style="margin-left: 50px"/>
+                                            <p:separator />
+
+                                        </f:facet>
+                                        <p:column filterBy="#{var2.id}" headerText="ID pedido"  filterMatchMode="contains">
+                                            <h:outputText value="#{var2.id}" />
+                                        </p:column>
+                                        <p:column filterBy="#{va2r.usuarioDestino}" headerText="Usuario destino"    filterMatchMode="contains">
+                                            <h:outputText value="#{var2.usuarioDestino}" />
+                                        </p:column>
+                                        <p:column filterBy="#{var2.tipo}" headerText="Tipo de sangre"   filterMatchMode="contains">
+                                            <h:outputText value="#{var2
+                                                                   .tipo}" />
+                                        </p:column>
+                                        <p:column filterBy="#{var2.dosisOriginales}" headerText="Cantidad pedido"   filterMatchMode="contains">
+                                            <h:outputText value="#{var2.dosisOriginales}" />
+                                        </p:column>
+                                        <p:column filterBy="#{var2.fecha}" headerText="Fecha realización Pedido"   filterMatchMode="contains">
+                                            <h:outputText value="#{var2.fecha}" />
+                                        </p:column>
+                                        <p:column filterBy="#{var2.fechacompletarpedido}" headerText="Fecha Pedido completado"   filterMatchMode="contains">
+                                            <h:outputText value="#{var2.fechacompletarpedido}" />
+                                        </p:column>
+                                    </p:dataTable>
+
+
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </h:body>
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>
+
+        </div></div>
 </html>

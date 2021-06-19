@@ -7,7 +7,7 @@
     <h:head>
         <title>Laboratorio</title>
         <link rel="stylesheet" href="borrar.css"></link>
-      
+
         <script src="https://kit.fontawesome.com/22e24bcbd3.js" crossorigin="anonymous"></script>
     </h:head>
     <div class="container">
@@ -15,14 +15,15 @@
         <div class="screen">
             <div class="screen__content">
                 <h:body onload="#{laboratorio.listaSangre()}">
+
                     <div class="box">
+
                         <h:form>
                             <div class="box2">
                                 <div class="login__field" style="margin-left: 100px; margin-top: 50px">
                                     <br></br>
                                     <h1> 
                                         Validar muestras</h1>
-
                                 </div>
                                 <div class="login__field" style="text-align:center;">
                                     <br></br>
@@ -30,13 +31,14 @@
                                     <br></br>
                                     <br></br>
                                     <h2> 
-                                        Nombre de usuario</h2>
-
-
-                                    <p:inputText  class="login__input" id="username" value="#{laboratorio.id}"    ></p:inputText >
-                                    <div class="errorMensaje" style="position: absolute; top:200px; z-index: 99999">
-                                        <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
-                                    </div>
+                                        Id muestra</h2>
+                                    <form>
+                                        <p:inputText  class="login__input" id="username" value="#{laboratorio.id}"    ></p:inputText >
+                                        <p:messages for="MessageId" showDetail="true"  closable="true" style="z-index: 99999 ;position: absolute; width: 99%; ">
+                                            <p:autoUpdate/>
+                                   
+                                    </p:messages>
+                                         </form>
                                 </div>
 
                                 <div class="login__field2">
@@ -45,21 +47,14 @@
                                     </h:commandLink>
                                 </div>
                             </div>
-
+                            <br /><br />
                             <br /><br />
 
                             <br /><br />
-
-                            <br /><br />
-
                             <h:message for="username"></h:message>
                             <br /><br />
-
-
-                            <div class="errorMensaje" style="position: absolute; top:-5px;">
-                                <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
-                            </div>
                             <div class="login__field">
+
                                 <p:commandLink class="button login__submit"  value="Borrar" type="button" styleClass="button login__submit" style="text-decoration:none;color: #4C489D;;" onclick="PF('deleteDlg').show()">
                                     <i class="button__icon fas fa-trash "></i>
                                 </p:commandLink>
@@ -73,6 +68,7 @@
                                 </p:commandLink>
 
                             </div>
+
 
 
                         </h:form>
@@ -114,6 +110,18 @@
 
                 </h:body>
             </div>
+            <p:confirmDialog  widgetVar="deleteDlg" id="deleteDialog" header="Delete" message="Borrar la muestra seleccionada?" global="true"  showEffect="fade" hideEffect="explode" width="400" closable="true" severity="alert">
+                <h:panelGroup layout="block" style="text-align: right">
+                    <p:commandButton value="Yes" action="#{laboratorio.borrarSangre()}" oncomplete="PF('deleteDlg').hide()" />
+                    <p:commandButton value="No"   onclick="PF('deleteDlg').hide()" />
+                </h:panelGroup>
+            </p:confirmDialog>
+            <p:confirmDialog  widgetVar="validarDlg" id="validarDialog" header="Delete" message="Añadir la muestra seleccionada?" global="true"  showEffect="fade" hideEffect="explode" width="400" closable="true" severity="alert">
+                <h:panelGroup layout="block" style="text-align: right">
+                    <p:commandButton value="Yes" action="#{laboratorio.addSangre()}" oncomplete="PF('validarDlg').hide()" />
+                    <p:commandButton value="No"   onclick="PF('validarDlg').hide()" />
+                </h:panelGroup>
+            </p:confirmDialog>
             <div class="screen__background"> <span class="screen__background__shape screen__background__shape4"></span>
                 <span class="screen__background__shape screen__background__shape3"></span>		
                 <span class="screen__background__shape screen__background__shape2"></span>

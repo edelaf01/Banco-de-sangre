@@ -85,14 +85,14 @@ public class Campo implements Serializable {
 
             campdao.addSangre(u);
             FacesContext.getCurrentInstance().addMessage(
-                    null,
+                    "MessageId",
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Sangre anyadido correctamente", ""
                     ));
 
         } else {
             FacesContext.getCurrentInstance().addMessage(
-                    null,
+                    "MessageId",
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Sangre no valido",
                             ""));

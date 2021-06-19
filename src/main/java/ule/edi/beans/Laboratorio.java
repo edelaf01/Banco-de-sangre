@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+import java.util.Objects;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -80,19 +80,26 @@ public class Laboratorio implements Serializable {
         Donantevalidar u = new Donantevalidar();
 
         u.setId(id);
-        Boolean jeje = ldao2.borrarSangre(u);
-        if (jeje == true) {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Sangre borrada correctamente", ""
-                    ));
+        String tipoS = "";
+        List<Donantevalidar> lista = ldao2.generarTabla();
+        try {
+            for (int i = 0; i < lista.size(); i++) {
+                if (id == lista.get(i).getId()) {
+                    tipoS = lista.get(i).getTipo();
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_INFO, "Sangre no encontrada no se ha borrado nada",
+                    ""));
+        }
+
+        if ("".equals(tipoS)) {
+
         } else {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Sangre no encontrada no se ha borrado nada", ""
-                    ));
+            Boolean jeje = ldao2.borrarSangre(u);
+            FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_INFO, "Sangre borrada correctamente",
+                    ""));
         }
 
     }
@@ -109,28 +116,29 @@ public class Laboratorio implements Serializable {
         s.setFecha(date);
         String tipoS = "";
         List<Donantevalidar> lista = ldao2.generarTabla();
-        for (int i = 0; i < lista.size(); i++) {
-            if (id == lista.get(i).getId()) {
-                tipoS = lista.get(i).getTipo();
-                break;
+        try {
+            for (int i = 0; i < lista.size(); i++) {
+                if (Objects.equals(id, lista.get(i).getId())) {
+                    tipoS = lista.get(i).getTipo();
+                    break;
+                }
             }
+        } catch (Exception e) {
+              FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se ha encontrado el id error",
+                    ""));
         }
-        if (tipoS == "") {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "No se ha encontrado el id error", ""
-                    ));
+        if ("".equals(tipoS)) {
+           FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_ERROR, "No se ha encontrado el id error",
+                    ""));
+
         } else {
             s.setTipo(tipoS);
             //Borro el objeto que voy a mover
             ldao2.borrarSangre(u);
             ldao2.addSangre(s);
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Sangre anyadido correctamente", ""
-                    ));
+            FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_INFO, "Sangre anyadido correctamente",
+                    ""));
+
         }
     }
 

@@ -222,7 +222,7 @@ public class AlmacenImpl {
             session = HibernateUtil.getSessionFactory().openSession();
 
             String hql = "FROM Pedidos where id=:id ";
-            System.out.println("Buscando pedido con el id: "+p.getId());
+            System.out.println("Buscando pedido con el id: " + p.getId());
             Query query = session.createQuery(hql);
 
             query.setString("id", "" + p.getId());
@@ -230,15 +230,15 @@ public class AlmacenImpl {
             if (!query.list().isEmpty()) {
 
                 listaSangre = query.list();
-                 System.out.println("Buscando pedido con el id: "+p.getId()+" Se ha encontrado resultados para el pedido dirigido al id "+listaSangre.get(0).getDestinatarioid() +
-                         " que pide "+listaSangre.get(0).getDosis()+" dosis de sangre");
+                System.out.println("Buscando pedido con el id: " + p.getId() + " Se ha encontrado resultados para el pedido dirigido al id " + listaSangre.get(0).getUsuarioDestino()
+                        + " que pide " + listaSangre.get(0).getDosis() + " dosis de sangre");
                 return listaSangre;
             }
 
             session.flush();
 
         } catch (Exception e) {
-               System.out.println("Excepcion encontrada con el pedido con el id "+p.getId());
+            System.out.println("Excepcion encontrada con el pedido con el id " + p.getId());
             session.getTransaction().rollback();
             e.printStackTrace();
 
@@ -248,7 +248,7 @@ public class AlmacenImpl {
             session.clear();
             session.close();
         }
-          System.out.println("Error no se ha encontrado el pedido con el id:" + p.getId());
+        System.out.println("Error no se ha encontrado el pedido con el id:" + p.getId());
         return listaSangre;
     }
 
@@ -280,15 +280,15 @@ public class AlmacenImpl {
     }
 
     public void enviarPedidoCompletado(Pedidoshechos p3) {
-         Transaction transaction = null;
+        Transaction transaction = null;
         try {
 
             session = HibernateUtil.getSessionFactory().openSession();
             // session = HibernateUtil.getSessionFactory().getCurrentSession();
 
             transaction = session.beginTransaction();
-
-            session.save(p3);
+          
+            session.update(p3);
 
             transaction.commit();
             session.flush();
@@ -335,6 +335,105 @@ public class AlmacenImpl {
             session.close();
 
         }
+    }
+
+    public boolean existePedidoCompletado(Pedidoshechos p3) {
+        Connection con = null;
+        con = DataConnect.getConnection();
+
+        try {
+
+            session = HibernateUtil.getSessionFactory().openSession();
+
+            String hql = "FROM Pedidoshechos where id=:id ";
+            System.out.println("Buscando pedido con el id: " + p3.getId());
+            Query query = session.createQuery(hql);
+
+            query.setString("id", "" + p3.getId());
+
+            if (!query.list().isEmpty()) {
+
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            // System.out.println("Excepcion encontrada con el pedido con el id "+p.getId());
+            session.getTransaction().rollback();
+            e.printStackTrace();
+
+        } finally {
+            DataConnect.close(con);
+            session.flush();
+            session.clear();
+            session.close();
+        }
+        //System.out.println("Error no se ha encontrado el pedido con el id:" + p.getId());
+        return false;
+    }
+
+    public void crearPedidoHecho(Pedidoshechos p3) {
+         Transaction transaction = null;
+        try {
+
+            session = HibernateUtil.getSessionFactory().openSession();
+            // session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+            transaction = session.beginTransaction();
+
+            session.save(p3);
+
+            transaction.commit();
+            session.flush();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+
+            //DataConnect.close(con);
+            session.flush();
+            session.clear();
+            session.close();
+        }
+    }
+
+    public List<Pedidoshechos> generarTablaPedidosHechos() {
+        Connection con = null;
+        con = DataConnect.getConnection();
+        List<Pedidoshechos> listaSangre = null;
+        try {
+
+            session = HibernateUtil.getSessionFactory().openSession();
+
+            String hql = "FROM Pedidoshechos ";
+
+            session.beginTransaction();
+
+            Query query = session.createQuery(hql);
+
+            if (!query.list().isEmpty()) {
+
+                listaSangre = query.list();
+
+                return listaSangre;
+            }
+
+            session.flush();
+
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+
+        } finally {
+            DataConnect.close(con);
+            session.flush();
+            session.clear();
+            session.close();
+        }
+        return listaSangre;
     }
 
 }

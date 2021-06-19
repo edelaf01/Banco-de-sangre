@@ -35,9 +35,12 @@
                                     <i class="button__icon fas fa-sign-out-alt"></i>
                                 </h:commandLink>
                             </div>
-                            <div class="errorMensaje" style="position: absolute; top:-5px;">
-                                <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
-                            </div>
+                            
+                                <p:messages for="MessageId" showDetail="true"  closable="true" style="z-index: 99999 ;position: absolute; width: 99%; ">
+                                            <p:autoUpdate/>
+                                   
+                                    </p:messages>
+                            
                             <br></br>   <br></br>
                             <div class="login__field">
                                 <h2>  Seleccione tipo de sangre </h2>
