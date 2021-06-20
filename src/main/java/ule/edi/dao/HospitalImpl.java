@@ -150,7 +150,7 @@ public class HospitalImpl {
             Query query = session.createQuery(hql);
             query.setString("id", u);
             if (!query.list().isEmpty()) {
-
+                System.out.println("Bien");
                 listaSangre = query.list();
 
                 return listaSangre;
@@ -168,6 +168,7 @@ public class HospitalImpl {
             session.clear();
             session.close();
         }
+        System.out.println("Mal"+u);
         return listaSangre;
     }
 

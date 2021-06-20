@@ -2,35 +2,104 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:f = "http://java.sun.com/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f = "http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <script src="https://kit.fontawesome.com/22e24bcbd3.js" crossorigin="anonymous"></script>
         <title>Hospital</title>
+        <link rel="stylesheet" type="text/css" href="login.css" media="all" />
+        
+
     </h:head>
-    <h:body>
-        <h:form>
-            <p>Welcome #{login.user}</p>
+    <div class="container">
 
-            <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
-            <p>Introduzca usuario para enviar </p>
-            <h:inputText id="user" value="#{hospital.nombreUsuario}"></h:inputText>
-            <p>Introduzca Cantidad deseada </p>
-            <h:inputText id="dosis" value="#{hospital.dosis}"></h:inputText>
-            <p>Introduzca tipo deseado </p>
+        <div class="screen" style="width: 500px">
+            <div class="screen__content" >
+                <h:body  onload="#{hospital.listaStockAlmacen()}"  style="z-index: 0">
+                    <div class="box">
+                        <h:form>
 
-            <h:selectOneMenu value="#{hospital.tipo}"  >
-                <f:selectItem itemValue = "A+" itemLabel = "A+" /> 
-                <f:selectItem itemValue = "B+" itemLabel = "B+" /> 
-                <f:selectItem itemValue = "O+" itemLabel = "O+" /> 
-                <f:selectItem itemValue = "AB+" itemLabel = "AB+" /> 
-                <f:selectItem itemValue = "A-" itemLabel = "A-" /> 
-                <f:selectItem itemValue = "B-" itemLabel = "B-" /> 
-                <f:selectItem itemValue = "O-" itemLabel = "O-" /> 
-                <f:selectItem itemValue = "AB-" itemLabel = "AB-" /> 
-            </h:selectOneMenu>
-            <h:commandButton action="#{hospital.enviarPedido()}"
-                             value="Aver"></h:commandButton>
+                            <div class="login__field">
+                                <h1>Welcome #{login.user}</h1>
+
+                                <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2" style="margin-top: -45px; position: absolute; margin-left: 330px">
+                                    <i class="button__icon fas fa-sign-out-alt"></i>
+                                </h:commandLink>
+                                <div class="errorMensaje" style="position: absolute; margin-top:5%; right: 80px; z-index: 999">
+                                    <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
+                                </div>
+                            </div>
 
 
-        </h:form>
-    </h:body>
+                            <div class="login__field">
+                                <h2 style="margin-top: 40px; margin-bottom: 40px">Introduzca Cantidad deseada </h2>
+                                <p:inputText  class="login__input" id="dosis" value="#{hospital.dosis}" style="margin-left: 13%"  ></p:inputText>
+
+                                <h2 style="margin-top: 40px; margin-bottom: 60px">Introduzca tipo deseado </h2>
+
+                                <p:selectOneMenu value="#{hospital.tipo}" styleClass="form-control radius-none" style="width: 100%; " >
+                                    <f:selectItem itemValue = "A+" itemLabel = "A+" /> 
+                                    <f:selectItem itemValue = "B+" itemLabel = "B+" /> 
+                                    <f:selectItem itemValue = "O+" itemLabel = "O+" /> 
+                                    <f:selectItem itemValue = "AB+" itemLabel = "AB+" /> 
+                                    <f:selectItem itemValue = "A-" itemLabel = "A-" /> 
+                                    <f:selectItem itemValue = "B-" itemLabel = "B-" /> 
+                                    <f:selectItem itemValue = "O-" itemLabel = "O-" /> 
+                                    <f:selectItem itemValue = "AB-" itemLabel = "AB-" /> 
+                                </p:selectOneMenu>
+                            </div> <div class="login__field">
+                                <p:commandLink class="button login__submit"  value="Realizar pedido" type="button" styleClass="button login__submit" style="text-decoration:none;color: #4C489D;;" onclick="PF('deleteDlg').show()">
+                                    <i class="button__icon fas fa fa-paper-plane "></i>
+                                </p:commandLink>
+                              
+                             
+
+
+                            </div>
+                            <h:form>
+                                <p:dataTable  value="#{hospital.listaAlmacen}" var="var" filteredValue="#{hospital.listaAlmacenFiltrada}" widgetVar="customersTable" emptyMessage="No hay coincidencias" paginator="true"
+                                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                              currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                              rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
+                                    <f:facet name="header">
+                                        <h:outputText value="Busqueda global:" />
+                                        <p:inputText id="globalFilter" onkeyup="PF('customersTable').filter()" style="width:150px" />
+                                        
+                                           
+                                          <h:outputText value="Inventario hospital" style="margin-left: 14px"/>
+                                        <p:separator />
+
+                                    </f:facet>
+                                    <p:column filterBy="#{var.id}" headerText="Id"    filterMatchMode="contains">
+                                        <h:outputText value="#{var.id}" />
+                                    </p:column>
+                                    <p:column filterBy="#{var.tipoSangre}" headerText="Tipo de sangre"   filterMatchMode="contains">
+                                        <h:outputText value="#{var.tipoSangre}" />
+                                    </p:column>
+
+                                    <p:column filterBy="#{var.fecha}" headerText="Fecha"   filterMatchMode="contains">
+                                        <h:outputText value="#{var.fecha}" />
+                                    </p:column>
+
+
+
+
+                                </p:dataTable>
+                            </h:form>
+
+                        </h:form></div>
+                     <p:confirmDialog  widgetVar="deleteDlg" id="deleteDialog" header="Confirmacion pedido" message="Realizar el pedido?" global="true"  showEffect="fade" hideEffect="explode" width="400" closable="true" severity="alert">
+                                    <h:panelGroup layout="block" style="text-align: right">
+                                        <p:commandButton value="Si" action="#{hospital.enviarPedido()}" oncomplete="PF('deleteDlg').hide()" />
+                                        <p:commandButton value="No"   onclick="PF('deleteDlg').hide()" />
+                                    </h:panelGroup>
+                                </p:confirmDialog>
+                </h:body>
+            </div>   <div class="screen__background">
+
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>  </div>   </div>
 </html>
+
