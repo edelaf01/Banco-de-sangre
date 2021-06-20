@@ -82,78 +82,81 @@
                                 </h:form>
                             </div>
                             <div>
+                                <div style="margin-top: 10%;margin-bottom: 20%">
+                                    <h2>Tabla pedidos activos</h2>
+                                    <br /><br />
+                                    <h:form prependId="false">
+                                        <p:dataTable  value="#{pedidos.listaPedidos}" var="var" filteredValue="#{pedidos.listaPedidosFiltrada}" widgetVar="tablaAlmacen" emptyMessage="No hay coincidencias" paginator="true"
+                                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                      currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                                      rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
+                                            <f:facet name="header">
+                                                <h:outputText value="Busqueda global:" />
+                                                <p:inputText id="globalFilter" onkeyup="PF('tablaAlmacen').filter()" style="width:150px" />
+                                                <h:outputText value="       Pedidos disponibles para completar" style="margin-left: 50px"/>
+                                                <p:separator />
 
-                                <h2>Tabla pedidos activos</h2>
-                                <br /><br />
-                                <h:form prependId="false">
-                                    <p:dataTable  value="#{pedidos.listaPedidos}" var="var" filteredValue="#{pedidos.listaPedidosFiltrada}" widgetVar="tablaAlmacen" emptyMessage="No hay coincidencias" paginator="true"
-                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                  currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                                                  rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
-                                        <f:facet name="header">
-                                            <h:outputText value="Busqueda global:" />
-                                            <p:inputText id="globalFilter" onkeyup="PF('tablaAlmacen').filter()" style="width:150px" />
-                                            <h:outputText value="       Pedidos disponibles para completar" style="margin-left: 50px"/>
-                                            <p:separator />
-
-                                        </f:facet>
-                                        <p:column filterBy="#{var.id}" headerText="ID pedido"  filterMatchMode="contains">
-                                            <h:outputText value="#{var.id}" />
-                                        </p:column>
-                                        <p:column filterBy="#{var.usuarioDestino}" headerText="Usuario destino"    filterMatchMode="contains">
-                                            <h:outputText value="#{var.usuarioDestino}" />
-                                        </p:column>
-                                        <p:column filterBy="#{var.tipo}" headerText="Tipo de sangre"   filterMatchMode="contains">
-                                            <h:outputText value="#{var.tipo}" />
-                                        </p:column>
-
-
-                                        <p:column filterBy="#{var.dosis}" headerText="Cantidad pedido"   filterMatchMode="contains">
-                                            <h:outputText value="#{var.dosis}" />
-                                        </p:column>
-                                        <p:column filterBy="#{var.fecha}" headerText="Fecha Pedido"   filterMatchMode="contains">
-                                            <h:outputText value="#{var.fecha}" />
-                                        </p:column>
-                                    </p:dataTable>
+                                            </f:facet>
+                                            <p:column filterBy="#{var.id}" headerText="ID pedido"  filterMatchMode="contains">
+                                                <h:outputText value="#{var.id}" />
+                                            </p:column>
+                                            <p:column filterBy="#{var.usuarioDestino}" headerText="Usuario destino"    filterMatchMode="contains">
+                                                <h:outputText value="#{var.usuarioDestino}" />
+                                            </p:column>
+                                            <p:column filterBy="#{var.tipo}" headerText="Tipo de sangre"   filterMatchMode="contains">
+                                                <h:outputText value="#{var.tipo}" />
+                                            </p:column>
 
 
-                                </h:form>
-                                <h:form prependId="false">
-                                      <h2>Tabla pedidos completados</h2>
-                                    <p:dataTable  value="#{pedidos.listaPedidosH}" var="var2" filteredValue="#{pedidos.listaPedidosFiltradaH}" widgetVar="tablaPedidosH" emptyMessage="No hay coincidencias" paginator="true"
-                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                  currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                                                  rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
-                                        <f:facet name="header">
-                                            <h:outputText value="Busqueda global:" />
-                                            <p:inputText id="globalFilter" onkeyup="PF('tablaPedidosH').filter()" style="width:150px" />
-                                            <h:outputText value="       Pedidos completados" style="margin-left: 50px"/>
-                                            <p:separator />
-
-                                        </f:facet>
-                                        <p:column filterBy="#{var2.id}" headerText="ID pedido"  filterMatchMode="contains">
-                                            <h:outputText value="#{var2.id}" />
-                                        </p:column>
-                                        <p:column filterBy="#{va2r.usuarioDestino}" headerText="Usuario destino"    filterMatchMode="contains">
-                                            <h:outputText value="#{var2.usuarioDestino}" />
-                                        </p:column>
-                                        <p:column filterBy="#{var2.tipo}" headerText="Tipo de sangre"   filterMatchMode="contains">
-                                            <h:outputText value="#{var2
-                                                                   .tipo}" />
-                                        </p:column>
-                                        <p:column filterBy="#{var2.dosisOriginales}" headerText="Cantidad pedido"   filterMatchMode="contains">
-                                            <h:outputText value="#{var2.dosisOriginales}" />
-                                        </p:column>
-                                        <p:column filterBy="#{var2.fecha}" headerText="Fecha realización Pedido"   filterMatchMode="contains">
-                                            <h:outputText value="#{var2.fecha}" />
-                                        </p:column>
-                                        <p:column filterBy="#{var2.fechacompletarpedido}" headerText="Fecha Pedido completado"   filterMatchMode="contains">
-                                            <h:outputText value="#{var2.fechacompletarpedido}" />
-                                        </p:column>
-                                    </p:dataTable>
+                                            <p:column filterBy="#{var.dosis}" headerText="Cantidad pedido"   filterMatchMode="contains">
+                                                <h:outputText value="#{var.dosis}" />
+                                            </p:column>
+                                            <p:column filterBy="#{var.fecha}" headerText="Fecha Pedido"   filterMatchMode="contains">
+                                                <h:outputText value="#{var.fecha}" />
+                                            </p:column>
+                                        </p:dataTable>
 
 
-                                </h:form>
+                                    </h:form>
+                                </div>
+                                <div style="margin-top: 10%;margin-bottom: 20%">
+                                    <h:form prependId="false">
+                                        <h2>Tabla pedidos completados</h2>
+                                        <p:dataTable  value="#{pedidos.listaPedidosH}" var="var2" filteredValue="#{pedidos.listaPedidosFiltradaH}" widgetVar="tablaPedidosH" emptyMessage="No hay coincidencias" paginator="true"
+                                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                      currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                                      rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
+                                            <f:facet name="header">
+                                                <h:outputText value="Busqueda global:" />
+                                                <p:inputText id="globalFilter" onkeyup="PF('tablaPedidosH').filter()" style="width:150px" />
+                                                <h:outputText value="       Pedidos completados" style="margin-left: 50px"/>
+                                                <p:separator />
+
+                                            </f:facet>
+                                            <p:column filterBy="#{var2.id}" headerText="ID pedido"  filterMatchMode="contains">
+                                                <h:outputText value="#{var2.id}" />
+                                            </p:column>
+                                            <p:column filterBy="#{va2r.usuarioDestino}" headerText="Usuario destino"    filterMatchMode="contains">
+                                                <h:outputText value="#{var2.usuarioDestino}" />
+                                            </p:column>
+                                            <p:column filterBy="#{var2.tipo}" headerText="Tipo de sangre"   filterMatchMode="contains">
+                                                <h:outputText value="#{var2
+                                                                       .tipo}" />
+                                            </p:column>
+                                            <p:column filterBy="#{var2.dosisOriginales}" headerText="Cantidad pedido"   filterMatchMode="contains">
+                                                <h:outputText value="#{var2.dosisOriginales}" />
+                                            </p:column>
+                                            <p:column filterBy="#{var2.fecha}" headerText="Fecha realización Pedido"   filterMatchMode="contains">
+                                                <h:outputText value="#{var2.fecha}" />
+                                            </p:column>
+                                            <p:column filterBy="#{var2.fechacompletarpedido}" headerText="Fecha Pedido completado"   filterMatchMode="contains">
+                                                <h:outputText value="#{var2.fechacompletarpedido}" />
+                                            </p:column>
+                                        </p:dataTable>
+
+
+                                    </h:form>
+                                </div>
                             </div>
                         </div>
                     </div>
