@@ -138,16 +138,16 @@ public class Admin implements Serializable {
 
     public void registrar() {
         String metodo = "login";
-        //System.out.println("AAAAAAAAAAAAAAAAAAAAA" + user.isEmpty() + pwd.isEmpty() + nomapel.isEmpty());
+       
         if (user.isEmpty() || nomapel.isEmpty() || pwd.isEmpty()) {
             FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error ,",
                     "Contraseña y usuario no pueden estar vacios"));
-
+                   
         } else {
-            boolean valid = ldao.validate(user, pwd, type, metodo);
-
-            if (!valid) {
-
+            boolean existe = ldao.validate(user, pwd, type, metodo);
+            //Comprueba si el usuario existe o no
+            if (!existe) {
+                
                 RegistroImpl rdao = new RegistroImpl();
                 User u = new User();
 

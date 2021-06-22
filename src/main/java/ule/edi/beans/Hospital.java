@@ -114,75 +114,73 @@ public class Hospital implements Serializable {
     public void enviarPedido() {
         ule.edi.model.Pedidos p = new ule.edi.model.Pedidos();
         System.out.println();
-        if(dosis==null||dosis<=0){
-               FacesContext.getCurrentInstance().addMessage(
-                    "MessageId"
-                    ,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+        if (dosis == null || dosis <= 0) {
+            FacesContext.getCurrentInstance().addMessage(
+                    "MessageId",
+                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Error no introduzca un numero valido", ""
                     ));
-               return;
-        }
-            
-       try{
-           int m=dosis+1;
-       
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date(System.currentTimeMillis());
-        p.setFecha(date);
-        p.setTipo(tipo);
-        p.setDosis(dosis);
-        p.setUsuarioDestino(nombreUsuario);
-        HospitalImpl hdao = new HospitalImpl();
-        
-        List<User> jeje = hdao.getUserId(nombreUsuario);
-        if (jeje == null) {
-            System.out.println("AAAAA " + nombreUsuario);
-            System.out.println("Error jeje=null");
-            FacesContext.getCurrentInstance().addMessage(
-                    "MessageId"
-                    ,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN,
-                            "Error no se ha encontrado usuario", ""
-                    ));
+
         } else {
-            if (!jeje.get(0).getType().equals("Hospital")) {
-                System.out.println("Error no es usuario hosputal");
+
+            try {
+                int m = dosis + 1;
+                
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date(System.currentTimeMillis());
+                p.setFecha(date);
+                p.setTipo(tipo);
+                p.setDosis(dosis);
+                p.setUsuarioDestino(nombreUsuario);
+                HospitalImpl hdao = new HospitalImpl();
+
+                List<User> jeje = hdao.getUserId(nombreUsuario);
+                if (jeje == null) {
+                    //System.out.println("AAAAA " + nombreUsuario);
+                    //System.out.println("Error jeje=null");
+                    FacesContext.getCurrentInstance().addMessage(
+                            "MessageId",
+                             new FacesMessage(FacesMessage.SEVERITY_WARN,
+                                    "Error no se ha encontrado usuario", ""
+                            ));
+                } else {
+                    if (!jeje.get(0).getType().equals("Hospital")) {
+                        System.out.println("Error no es usuario hospital");
+                        FacesContext.getCurrentInstance().addMessage(
+                                "MessageId",
+                                new FacesMessage(FacesMessage.SEVERITY_WARN,
+                                        "Error el usuario no es de tipo hospital no se le puede enviar", ""
+                                ));
+                    } else {
+                        System.out.println("Haciendo el pedido");
+                        p.setUsuarioDestino(jeje.get(0).getUsername());
+
+                        hdao.hacerPedido(p);
+
+                        FacesContext.getCurrentInstance().addMessage(
+                                "MessageId",
+                                new FacesMessage(FacesMessage.SEVERITY_INFO,
+                                        "Pedido realizado correctamente para: " + nombreUsuario, " Se enviarán " + dosis + " dosis de tipo " + tipo
+                                ));
+                    }
+                }
+                System.out.println(nombreUsuario);
+                //TO-DO p.setDestinatarioid();
+            } catch (Exception e) {
                 FacesContext.getCurrentInstance().addMessage(
-                         "MessageId",
-                        new FacesMessage(FacesMessage.SEVERITY_WARN,
-                                "Error el usuario no es de tipo hospital no se le puede enviar", ""
-                        ));
-            } else {
-                System.out.println("Haciendo el pedido");
-                p.setUsuarioDestino(jeje.get(0).getUsername());
-                //p.setDestinatarioid(jeje.get(0).getId());
-                hdao.hacerPedido(p);
-               
-                FacesContext.getCurrentInstance().addMessage(
-                         "MessageId",
-                        new FacesMessage(FacesMessage.SEVERITY_INFO,
-                                "Pedido realizado correctamente para: "+nombreUsuario, " Se enviarán "+dosis+" dosis de tipo "+tipo
+                        "MessageId",
+                         new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                "Error introduzca un numero", ""
                         ));
             }
         }
-        System.out.println(nombreUsuario);
-        //TO-DO p.setDestinatarioid();
-        }catch(Exception e){
-             FacesContext.getCurrentInstance().addMessage(
-                    "MessageId"
-                    ,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Error introduzca un numero", ""
-                    ));
-       }
     }
 
     public List<Inventariohospital> listaStockAlmacen() {
         HospitalImpl hdao = new HospitalImpl();
         System.out.println("Generando tabla");
         setListaAlmacen(hdao.generarTablaAlmacen(nombreUsuario));
-            
+
         return listaAlmacen;
 
     }

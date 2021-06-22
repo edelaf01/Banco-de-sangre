@@ -24,9 +24,10 @@
                                 <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2" style="margin-top: -45px; position: absolute; margin-left: 330px">
                                     <i class="button__icon fas fa-sign-out-alt"></i>
                                 </h:commandLink>
-                                <div class="errorMensaje" style="position: absolute; margin-top:5%; right: 80px; z-index: 999">
-                                    <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
-                                </div>
+                                 <p:messages for="MessageId" showDetail="true"  closable="true" style="z-index: 99999 ;position: absolute; width: 99%; ">
+                                            <p:autoUpdate/>
+                                   
+                                    </p:messages>
                             </div>
 
 
