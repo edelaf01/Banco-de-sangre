@@ -10,6 +10,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import ule.edi.model.Stocksangrealmacen;
 import ule.edi.model.User;
 import ule.edi.util.DataConnect;
 
@@ -17,7 +18,38 @@ public class LoginDAO {
 
     private Session session;
 
-    public boolean validate(String user, String password, String type, String metodo) {
+    public boolean validate(String user, String password, String type, String metodo,int id2) {
+        if ("borrarSangre".equals(metodo)) {
+            Connection con = null;
+            con = DataConnect.getConnection();
+            session = HibernateUtil.getSessionFactory().openSession();
+
+            String hql = "FROM Stocksangrealmacen WHERE id=" + id2 ;
+            try {
+                session.beginTransaction();
+
+                Query query = session.createQuery(hql);
+                List<Stocksangrealmacen> us = query.list();
+                if (!us.isEmpty()) {
+                    Stocksangrealmacen u = us.get(0);
+                    
+                   
+                    return true;
+                }
+
+                session.flush();
+
+            } catch (Exception e) {
+                session.getTransaction().rollback();
+                e.printStackTrace();
+
+            } finally {
+                DataConnect.close(con);
+                // session.close();
+            }
+            return false;
+        }
+        
         if ("login".equals(metodo)) {
             Connection con = null;
             con = DataConnect.getConnection();
@@ -34,7 +66,7 @@ public class LoginDAO {
                 List<User> us = query.list();
                 if (!us.isEmpty()) {
                     User u = us.get(0);
-                    
+
                     updateLoginTime(u);
                     return true;
                 }
@@ -47,7 +79,7 @@ public class LoginDAO {
 
             } finally {
                 DataConnect.close(con);
-               // session.close();
+                // session.close();
             }
             return false;
         } else if ("registro".equals(metodo)) {
@@ -132,5 +164,30 @@ public class LoginDAO {
             session.close();
         }
 
+    }
+
+    public void borrarSangre(int id) {
+        // Connection con = null;
+        // con = DataConnect.getConnection();
+        Transaction transaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+           //  session = HibernateUtil.getSessionFactory().getCurrentSession();
+            String hql = "delete from Stocksangrealmacen where id="+id;
+            Query query = session.createQuery(hql);
+            transaction = session.beginTransaction();
+           
+            query.executeUpdate();
+            transaction.commit();
+            session.flush();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            //DataConnect.close(con);
+            session.close();
+        }
     }
 }

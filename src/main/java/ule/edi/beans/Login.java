@@ -113,19 +113,14 @@ public class Login implements Serializable {
 
             return "login";
         }
-        boolean valid = ldao.validate(user, pwd, type, metodo);
+        boolean valid = ldao.validate(user, pwd, type, metodo,0);
 
         if (valid) {
             //ultimo login
-
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user);
             type2 = type;
             user2 = user;
-            /* PrimeFaces current = PrimeFaces.current();
-
-            current.executeScript("PF('myDialogVar').show();");*/
-
             return type;
 
         } else {

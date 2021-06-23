@@ -27,7 +27,7 @@ public class Admin implements Serializable {
 
     private static final long serialVersionUID = 1094801825228386322L;
     LoginDAO ldao = new LoginDAO();
-
+    private int id;
     private String pwd;
     private String msg;
     private String user;
@@ -38,6 +38,14 @@ public class Admin implements Serializable {
     private String ulticonfec;
     private List<User> users;
     private List<User> usersFiltrados;
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int pwd) {
+        this.id = pwd;
+    }
 
     public String getPwd() {
         return pwd;
@@ -110,7 +118,7 @@ public class Admin implements Serializable {
     public void setUser(String user) {
         this.user = user;
     }
-
+    
     public void backup() {
         try {
             Process p = Runtime
@@ -144,7 +152,7 @@ public class Admin implements Serializable {
                     "Contraseña y usuario no pueden estar vacios"));
                    
         } else {
-            boolean existe = ldao.validate(user, pwd, type, metodo);
+            boolean existe = ldao.validate(user, pwd, type, metodo,0);
             //Comprueba si el usuario existe o no
             if (!existe) {
                 
@@ -170,11 +178,47 @@ public class Admin implements Serializable {
             }
         }
     }
+    public void borrarSangre(){
+         String metodo = "borrarSangre";
 
+        boolean valid = ldao.validate(user, pwd, type, metodo,id);
+          if (valid) {
+              ldao.borrarSangre(id);
+               FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Se ha borrado la sangre correctamente",
+                    ""));
+          }else{
+               FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Error sangre con el id introducido no encontrado",
+                    "Introduzca otro id"));
+          }
+        
+    }
     public void borrar() {
         String metodo = "borrar";
 
-        boolean valid = ldao.validate(user, pwd, type, metodo);
+        boolean valid = ldao.validate(user, pwd, type, metodo,0);
+        if (valid) {
+
+            BorrarDAO rdao = new BorrarDAO();
+            User u = new User();
+
+            u.setUsername(user);
+
+            rdao.borrarUser(u);
+            FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_INFO, " ",
+                    "Se ha borrado a " + user));
+
+        } else {
+            FacesContext.getCurrentInstance().addMessage("MessageId", new FacesMessage(FacesMessage.SEVERITY_WARN, "Error usuario no encontrado",
+                    "Introduzca otro usuario"));
+
+        }
+
+    }
+    
+    public void borrarSangreAlmacen() {
+        String metodo = "borrar";
+
+        boolean valid = ldao.validate(user, pwd, type, metodo,0);
         if (valid) {
 
             BorrarDAO rdao = new BorrarDAO();

@@ -2,23 +2,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f = "http://java.sun.com/jsf/core"  xmlns:p="http://primefaces.org/ui">  >
+      xmlns:f = "http://java.sun.com/jsf/core"  xmlns:p="http://primefaces.org/ui">  
     <h:head>
 
         <script src="https://kit.fontawesome.com/22e24bcbd3.js" crossorigin="anonymous"></script>
         <title>Registro</title>
         <link rel="stylesheet" href="registrar.css"></link>
     </h:head>
+    <div class="topnav">
+        <a  href="borrar.xhtml" style="width: 33%; background-color:  #7E7BB9">Borrar usuarios</a>
+        <a href="borrarSangre.xhtml" style="width: 33%;background-color:   #8f5cfc">Borrar sangre</a>
+          <a  style="width: 33%; pointer-events: none "  >Navegación</a>
+    </div>
     <div class="container">
 
         <div class="screen">
+
             <div class="screen__content">
+
                 <h:body>
                     <div class="box">
+                      
+                         
                         <h:form>
                             <h1>Registrar un nuevo usuario</h1>
 
                             <div class="login__field" >
+                                <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2" style="margin-top: -45px; position: absolute; margin-left: 250px">
+                                    <i class="button__icon fas fa-sign-out-alt"></i>
+                                </h:commandLink>
                                 <p:selectOneMenu value="#{admin.type}" styleClass="form-control radius-none" style="width: 200px;" >
                                     <f:selectItem itemValue = "admin" itemLabel = "Admin" /> 
                                     <f:selectItem itemValue = "Campo" itemLabel = "Campo" /> 
@@ -26,8 +38,8 @@
                                     <f:selectItem itemValue = "Almacen" itemLabel = "Almacen" /> 
                                     <f:selectItem itemValue = "Hospital" itemLabel = "Hospital" /> 
                                 </p:selectOneMenu>
-                              <div class="errorMensaje" style="position: absolute; top:-5px;">
-                                       <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
+                                <div class="errorMensaje" style="position: absolute; top:-5px;">
+                                    <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
                                 </div>
                             </div>
                             <div class="login__field"></div>

@@ -80,6 +80,7 @@ public class Campo implements Serializable {
             Donantevalidar u = new Donantevalidar();
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date(System.currentTimeMillis());
+            
             u.setFecha(date);
             u.setTipo(tipoSangre);
 

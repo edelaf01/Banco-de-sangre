@@ -10,15 +10,16 @@
 
         <script src="https://kit.fontawesome.com/22e24bcbd3.js" crossorigin="anonymous"></script>
     </h:head>
-    <div class="container">
+    <h:form>
+        <div class="container">
 
-        <div class="screen">
-            <div class="screen__content">
-                <h:body onload="#{laboratorio.listaSangre()}">
+            <div class="screen">
+                <div class="screen__content">
+                    <h:body onload="#{laboratorio.listaSangre()}">
 
-                    <div class="box">
+                        <div class="box">
 
-                        <h:form>
+
                             <div class="box2">
                                 <div class="login__field" style="margin-left: 100px; margin-top: 50px">
                                     <br></br>
@@ -36,15 +37,18 @@
                                         <p:inputText  class="login__input" id="username" value="#{laboratorio.id}"    ></p:inputText >
                                         <p:messages for="MessageId" showDetail="true"  closable="true" style="z-index: 99999 ;position: absolute; width: 99%; ">
                                             <p:autoUpdate/>
-                                   
-                                    </p:messages>
-                                         </form>
+
+                                        </p:messages>
+                                    </form>
                                 </div>
 
+
                                 <div class="login__field2">
-                                    <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2">
-                                        <i class="button__icon fas fa-sign-out-alt"></i>
-                                    </h:commandLink>
+                                    <h:form> 
+                                        <h:commandLink action="#{login.logout()}" value="Logout" styleClass="button2 login__submit2">
+                                            <i class="button__icon fas fa-sign-out-alt"></i>
+                                        </h:commandLink>
+                                    </h:form>
                                 </div>
                             </div>
                             <br /><br />
@@ -71,62 +75,63 @@
 
 
 
-                        </h:form>
-
-                    </div> 
-                    <div class="tabla">
-                        <h:form>
-                            <p:dataTable  value="#{laboratorio.users}" var="var" filteredValue="#{laboratorio.usersFiltrados}" widgetVar="customersTable" emptyMessage="No hay coincidencias" paginator="true"
-                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                                          rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
-                                <f:facet name="header">
-                                    <h:outputText value="Busqueda global:" />
-                                    <p:inputText id="globalFilter" onkeyup="PF('customersTable').filter()" style="width:150px" />
-                                    <p:separator />
-
-                                </f:facet>
-                                <p:column filterBy="#{var.id}" headerText="Id"    filterMatchMode="contains">
-                                    <h:outputText value="#{var.id}" />
-                                </p:column>
-                                <p:column filterBy="#{var.tipo}" headerText="Tipo de sangre"   filterMatchMode="contains">
-                                    <h:outputText value="#{var.tipo}" />
-                                </p:column>
-
-                                <p:column filterBy="#{var.fecha}" headerText="Fecha"   filterMatchMode="contains">
-                                    <h:outputText value="#{var.fecha}" />
-                                </p:column>
 
 
+                        </div> 
+                        <div class="tabla">
+                            <h:form>
+                                <p:dataTable  value="#{laboratorio.users}" var="var" filteredValue="#{laboratorio.usersFiltrados}" widgetVar="customersTable" emptyMessage="No hay coincidencias" paginator="true"
+                                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                              currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                              rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;">
+                                    <f:facet name="header">
+                                        <h:outputText value="Busqueda global:" />
+                                        <p:inputText id="globalFilter" onkeyup="PF('customersTable').filter()" style="width:150px" />
+                                        <p:separator />
 
+                                    </f:facet>
+                                    <p:column filterBy="#{var.id}" headerText="Id"    filterMatchMode="contains">
+                                        <h:outputText value="#{var.id}" />
+                                    </p:column>
+                                    <p:column filterBy="#{var.tipo}" headerText="Tipo de sangre"   filterMatchMode="contains">
+                                        <h:outputText value="#{var.tipo}" />
+                                    </p:column>
 
-                            </p:dataTable>
-                        </h:form>
+                                    <p:column filterBy="#{var.fecha}" headerText="Fecha"   filterMatchMode="contains">
+                                        <h:outputText value="#{var.fecha}" />
+                                    </p:column>
 
 
 
-                    </div>
+
+                                </p:dataTable>
+                            </h:form>
 
 
-                </h:body>
+
+                        </div>
+
+
+                    </h:body>
+                </div>
+                <p:confirmDialog  widgetVar="deleteDlg" id="deleteDialog" header="Delete" message="Borrar la muestra seleccionada?" global="true"  showEffect="fade" hideEffect="explode" width="400" closable="true" severity="alert">
+                    <h:panelGroup layout="block" style="text-align: right">
+                        <p:commandButton value="Yes" action="#{laboratorio.borrarSangre()}" oncomplete="PF('deleteDlg').hide()" />
+                        <p:commandButton value="No"   onclick="PF('deleteDlg').hide()" />
+                    </h:panelGroup>
+                </p:confirmDialog>
+                <p:confirmDialog  widgetVar="validarDlg" id="validarDialog" header="Delete" message="Añadir la muestra seleccionada?" global="true"  showEffect="fade" hideEffect="explode" width="400" closable="true" severity="alert">
+                    <h:panelGroup layout="block" style="text-align: right">
+                        <p:commandButton value="Yes" action="#{laboratorio.addSangre()}" oncomplete="PF('validarDlg').hide()" />
+                        <p:commandButton value="No"   onclick="PF('validarDlg').hide()" />
+                    </h:panelGroup>
+                </p:confirmDialog>
+                <div class="screen__background"> <span class="screen__background__shape screen__background__shape4"></span>
+                    <span class="screen__background__shape screen__background__shape3"></span>		
+                    <span class="screen__background__shape screen__background__shape2"></span>
+                    <span class="screen__background__shape screen__background__shape1"></span></div>
+
             </div>
-            <p:confirmDialog  widgetVar="deleteDlg" id="deleteDialog" header="Delete" message="Borrar la muestra seleccionada?" global="true"  showEffect="fade" hideEffect="explode" width="400" closable="true" severity="alert">
-                <h:panelGroup layout="block" style="text-align: right">
-                    <p:commandButton value="Yes" action="#{laboratorio.borrarSangre()}" oncomplete="PF('deleteDlg').hide()" />
-                    <p:commandButton value="No"   onclick="PF('deleteDlg').hide()" />
-                </h:panelGroup>
-            </p:confirmDialog>
-            <p:confirmDialog  widgetVar="validarDlg" id="validarDialog" header="Delete" message="Añadir la muestra seleccionada?" global="true"  showEffect="fade" hideEffect="explode" width="400" closable="true" severity="alert">
-                <h:panelGroup layout="block" style="text-align: right">
-                    <p:commandButton value="Yes" action="#{laboratorio.addSangre()}" oncomplete="PF('validarDlg').hide()" />
-                    <p:commandButton value="No"   onclick="PF('validarDlg').hide()" />
-                </h:panelGroup>
-            </p:confirmDialog>
-            <div class="screen__background"> <span class="screen__background__shape screen__background__shape4"></span>
-                <span class="screen__background__shape screen__background__shape3"></span>		
-                <span class="screen__background__shape screen__background__shape2"></span>
-                <span class="screen__background__shape screen__background__shape1"></span></div>
-
         </div>
-    </div>
+    </h:form>
 </html>

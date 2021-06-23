@@ -18,6 +18,7 @@ public class Stocksangrealmacen  implements java.io.Serializable {
     }
 
     public Stocksangrealmacen(Date fecha, String tipo) {
+        
        this.fecha = fecha;
        this.tipo = tipo;
     }

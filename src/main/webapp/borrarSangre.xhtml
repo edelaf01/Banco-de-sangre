@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Borrar</title>
+        <link rel="stylesheet" href="borrar.css"></link>
+        <script src="https://kit.fontawesome.com/22e24bcbd3.js" crossorigin="anonymous"></script>
+    </h:head>
+     <div class="topnav">
+        <a  href="borrar.xhtml" style="width: 33%; background-color:  #7E7BB9">Borrar usuarios</a>
+        <a href="register.xhtml" style="width: 33%;background-color:   #8f5cfc">Registrar usuarios</a>
+          <a  style="width: 33%; pointer-events: none "  >Navegación</a>
+    </div>
+    <br></br>
+     <br></br>
+    <div class="container">
+
+        <div class="screen">
+            <div class="screen__content">
+                <h:body onload="#{pedidos.listaStockAlmacen()}">
+                    <div class="box">
+                        <h:form>
+                            <div class="box2">
+                                <div class="login__field" style="margin-left: 100px; margin-top: 50px">
+                                    <br></br>
+                                    <h1> 
+                                        Borrar sangre</h1>
+
+                                </div>
+                                <div class="login__field" style="text-align:center;">
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <h2> 
+                                       Id de la sangre a borrar</h2>
+    <p:messages for="MessageId" showDetail="true"  closable="true" style="z-index: 99999 ;position: absolute; width: 99%; margin-top: 10%">
+                                            <p:autoUpdate/>
+
+                                        </p:messages>
+
+                                    <p:inputText  class="login__input" id="username" value="#{admin.id}"    ></p:inputText >
+                                    <div class="errorMensaje" style="position: absolute; top:200px; z-index: 99999">
+                                        <p:messages for="MessageId" showDetail="true"  closable="true"></p:messages>
+                                    </div>
+                                </div>
+
+                                <div class="login__field2">
+                                    <h:commandLink action="#{login.logout}" value="Logout" styleClass="button2 login__submit2">
+                                        <i class="button__icon fas fa-sign-out-alt"></i>
+                                    </h:commandLink>
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <br /><br />
+
+                            <br /><br />
+
+                            <h:message for="username"></h:message>
+                            <br /><br />
+
+
+                        
+                            <div class="login__field">
+                                <h:commandLink class="button login__submit" action="admin.xhtml" value="Volver atrás" styleClass="button login__submit">
+                                    <i class="button__icon fas fa-backward"></i>
+                                </h:commandLink>
+
+                                <h:commandLink class="button login__submit" action="#{pedidos.listaStockAlmacen()}" value="Actualizar tabla" styleClass="button login__submit">
+                                    <i class="button__icon fas fa-sync"></i>
+                                </h:commandLink>
+                                <p:commandLink class="button login__submit"  value="Borrar" type="button" styleClass="button login__submit" style="text-decoration:none;color: #4C489D;;" onclick="PF('deleteDlg').show()">
+                                    <i class="button__icon fas fa-user-slash "></i>
+                                </p:commandLink>
+                                <p:confirmDialog  widgetVar="deleteDlg" id="deleteDialog" header="Delete" message="Borrar al usuario indicado?" global="true"  showEffect="fade" hideEffect="explode" width="400" closable="true" severity="alert">
+                                    <h:panelGroup layout="block" style="text-align: right">
+                                        <p:commandButton value="Yes" action="#{admin.borrarSangre()}" oncomplete="PF('deleteDlg').hide()" />
+                                        <p:commandButton value="No"   onclick="PF('deleteDlg').hide()" />
+                                    </h:panelGroup>
+                                </p:confirmDialog>
+                            </div>
+
+
+                        </h:form>
+
+                    </div>
+                   <div style="margin-top: 1%;margin-bottom: 20%"> 
+                                <h:form prependId="false">
+                                    <f:facet name = "header">Tipo de sangre pedida</f:facet>  
+                                    <p:dataTable  value="#{pedidos.listaAlmacen}" var="var" filteredValue="#{pedidos.listaAlmacenFiltrada}" widgetVar="tablaPedidos" emptyMessage="No hay coincidencias" paginator="true"
+                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                  currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                                  rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="table-layout: auto;" >
+                                        <f:facet name="header">
+                                            <h:outputText value="Busqueda global:" />
+                                            <p:inputText id="globalFilter" onkeyup="PF('tablaPedidos').filter()" style="width:150px" />
+                                            <h:outputText value="       Sangre disponible almacen" style="margin-left: 50px"/>
+                                            <p:separator />
+
+                                        </f:facet>
+                                        <p:column filterBy="#{var.id}" headerText="ID"    filterMatchMode="contains">
+                                            <h:outputText value="#{var.id}" />
+                                        </p:column>
+                                        <p:column filterBy="#{var.tipo}" headerText="Tipo de sangre"   filterMatchMode="contains">
+                                            <h:outputText value="#{var.tipo}" />
+                                        </p:column>
+
+
+                                        <p:column filterBy="#{var.fecha}" headerText="Fecha"   filterMatchMode="contains">
+                                            <h:outputText value="#{var.fecha}" />
+                                        </p:column>
+
+                                    </p:dataTable>
+
+                                </h:form>
+                            </div>
+
+
+                </h:body>
+            </div>
+            <div class="screen__background"> <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span></div>
+
+        </div>
+    </div>
+</html>

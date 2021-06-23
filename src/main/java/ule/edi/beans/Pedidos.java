@@ -176,7 +176,7 @@ public class Pedidos implements Serializable {
                 // Date date = new Date(System.currentTimeMillis());
                 // p3.setFechacompletarpedido(date);
                 //
-                int enviados=0;
+                int enviados = 0;
                 for (int i = 0; i < listaStockActual.size(); i++) {
                     if ((listaStockActual.get(i).getTipo().equals(enviarSangreTipo)) && cantidadAenviar > 0) {
                         enviados++;
@@ -186,6 +186,7 @@ public class Pedidos implements Serializable {
                         Stocksangrealmacen enviaryborrar = listaStockActual.get(i);
                         Inventariohospital recibir = new Inventariohospital();
                         recibir.setTipoSangre(enviaryborrar.getTipo());
+                        System.out.println("xxxxxxzzzz "+enviaryborrar.getFecha().toString());
                         recibir.setFecha(enviaryborrar.getFecha());
                         if (i == 0) {
 
@@ -237,12 +238,12 @@ public class Pedidos implements Serializable {
                     return;
 
                 }
-                  FacesContext.getCurrentInstance().addMessage(
-                            "MessageId",
-                            new FacesMessage(FacesMessage.SEVERITY_INFO,
-                                    "Se ha realizado un pedido a medias por falta de stock , se han enviado "+enviados, ""
-                            ));
-                
+                FacesContext.getCurrentInstance().addMessage(
+                        "MessageId",
+                        new FacesMessage(FacesMessage.SEVERITY_INFO,
+                                "Se ha realizado un pedido a medias por falta de stock , se han enviado " + enviados, ""
+                        ));
+
             }
         }
 
@@ -251,8 +252,8 @@ public class Pedidos implements Serializable {
     public List<Stocksangrealmacen> listaStockAlmacen() {
         AlmacenImpl adao = new AlmacenImpl();
         setListaAlmacen(adao.generarTablaAlmacen());
-        this.listaPedidosActualizar();
-        this.listaPedidosActualizarH();
+        listaPedidosActualizar();
+        listaPedidosActualizarH();
         return listaAlmacen;
 
     }
@@ -264,22 +265,21 @@ public class Pedidos implements Serializable {
         return listaPedidos;
 
     }
+
     public void listaPedidosActualizarH() {
         ule.edi.dao.AlmacenImpl adao = new AlmacenImpl();
-        List<Pedidoshechos> temp=adao.generarTablaPedidosHechos();
-        List<Pedidoshechos> temp2= new ArrayList<>();
-        int cont=0;
-        for(int i=0;i<temp.size();i++){
-            if(temp.get(i).getDosis()!=0){
+        List<Pedidoshechos> temp = adao.generarTablaPedidosHechos();
+        List<Pedidoshechos> temp2 = new ArrayList<>();
+        int cont = 0;
+        for (int i = 0; i < temp.size(); i++) {
+            if (temp.get(i).getDosis() != 0) {
                 //no lo anyado
-                
-            }else{
+
+            } else {
                 temp2.add(temp.get(i));
             }
         }
-        this.setListaPedidosH(temp2);
-        
-        
+        setListaPedidosH(temp2);
 
     }
 

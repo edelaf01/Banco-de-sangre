@@ -17,7 +17,51 @@ body {
     justify-content: center;
     min-height: 100vh;
 }
-
+.login__submit2,.button2 login__submit2 {
+    background: #fff;
+    font-size: 14px;
+    margin-top: -90px;
+    margin-left: 0px;
+    padding: 16px 20px;
+    
+    border-radius: 26px;
+    border: 1px solid #D4D3E8;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    width: 30%;
+    
+    color: #4C489D;
+    box-shadow: 0px 2px 2px #5C5696;
+    cursor: pointer;
+    transition: .2s;
+    text-decoration: none;
+}
+.login__submit3,.button3 login__submit3 {
+    background: #fff;
+    font-size: 14px;
+    margin-top: -90px;
+    margin-left: 0px;
+    padding: 16px 20px;
+    
+    border-radius: 26px;
+    border: 1px solid #D4D3E8;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    width: 30%;
+    
+    color: #4C489D;
+    box-shadow: 0px 2px 2px #5C5696;
+    cursor: pointer;
+    transition: .2s;
+    text-decoration: none;
+}
+.button3 login__submit3:hover{
+    left: 0px;
+}
 .screen {		
     background: linear-gradient(90deg, #5D54A4, #7C78B8);		
     position: relative;	
@@ -266,4 +310,26 @@ body {
     margin-left: auto;
     color: #7875B5;
 }
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
 
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ac8bf2;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
