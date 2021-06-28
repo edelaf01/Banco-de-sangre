@@ -119,11 +119,11 @@ public class LaboratorioImpl {
               
                 listaSangre = query.list();
                 for(int i=0;i<listaSangre.size();i++){
-                     System.out.println();
+                     /*System.out.println();
                     System.out.println(listaSangre.get(i).getId());
                      System.out.println(listaSangre.get(i).getTipo());
                       System.out.println(listaSangre.get(i).getFecha());
-                       System.out.println();
+                       System.out.println();*/
                 }
               
                 return listaSangre;

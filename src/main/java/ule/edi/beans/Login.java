@@ -131,6 +131,7 @@ public class Login implements Serializable {
 
     //logout event, invalidate session
     public String logout() {
+        System.out.println("Haciendo logout...");
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         return "login";

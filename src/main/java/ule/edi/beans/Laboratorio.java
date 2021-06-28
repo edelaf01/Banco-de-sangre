@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -23,7 +24,7 @@ import ule.edi.util.SessionUtils;
 @SessionScoped
 public class Laboratorio implements Serializable {
 
-    private static final long serialVersionUID = 1094801825228386322L;
+    private static final long serialVersionUID = 1094801825228386325L;
     private LaboratorioDAO ldao;
     private Integer id;
     private String msg;
@@ -150,6 +151,7 @@ public class Laboratorio implements Serializable {
 
     //logout event, invalidate session
     public String logout() {
+        
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         return "login";
